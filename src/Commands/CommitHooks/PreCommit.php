@@ -2,8 +2,6 @@
 
 namespace Feek\LaravelGitHooks\Commands\CommitHooks;
 
-use Feek\LaravelGitHooks\Commands\CommitHooks\CommitHookCommand;
-
 class PreCommit extends CommitHookCommand
 {
     /**
