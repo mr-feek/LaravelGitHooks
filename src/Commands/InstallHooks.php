@@ -48,6 +48,8 @@ class InstallHooks extends Command
             $source = $srcPath . $file . '.sh';
             $destination = $destPath . $file;
             copy($source, $destination);
+            chmod($destination, 0775);
+            
             $this->info("copied $source to $destination");
         }
 
