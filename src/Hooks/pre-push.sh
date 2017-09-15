@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-php artisan hooks:test
+php artisan hooks:pre-push
 
 if [ ! $? -eq 0 ]; then
-    echo "PUSH REJECTED. Your test suite is not currently passing"
+    echo "PUSH REJECTED."
     exit $?
 fi
 

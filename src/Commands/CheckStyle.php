@@ -40,6 +40,8 @@ class CheckStyle extends Command
         $dirToCheckStyle = app_path();
         $phpcs = base_path() . '/vendor/bin/phpcs';
 
+        $this->info('running phpcs...');
+
         exec(
             "$phpcs -p --standard=PSR2 $dirToCheckStyle",
                 $output,
@@ -49,6 +51,9 @@ class CheckStyle extends Command
         if ($statusCode !== 0) {
             // todo: pretty!
             $this->alert(print_r($output, true));
+            $this->error('Please ensure your code meets this projects styleguide. Automatically fix by running \'php artisan hooks:fix-style\'');
+        } else {
+            $this->info('phpcs passed!');
         }
 
         return $statusCode;

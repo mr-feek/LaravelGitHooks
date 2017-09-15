@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-php artisan hooks:check-style
+php artisan hooks:pre-commit
 
 if [ ! $? -eq 0 ]; then
-    echo "COMMIT REJECTED. Please ensure your code meets this projects styleguide. Automatically fix by running 'php artisan hooks:fix-style'."
+    echo "COMMIT REJECTED."
     exit $?
 fi
 
