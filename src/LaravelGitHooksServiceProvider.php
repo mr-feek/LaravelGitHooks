@@ -2,12 +2,12 @@
 
 namespace Feek\LaravelGitHooks;
 
-use Feek\LaravelGitHooks\Commands\CheckStyle;
-use Feek\LaravelGitHooks\Commands\FixStyle;
+use Feek\LaravelGitHooks\Commands\Phpcs;
+use Feek\LaravelGitHooks\Commands\Phpcbf;
 use Feek\LaravelGitHooks\Commands\InstallHooks;
 use Feek\LaravelGitHooks\Commands\CommitHooks\PreCommit;
 use Feek\LaravelGitHooks\Commands\CommitHooks\PrePush;
-use Feek\LaravelGitHooks\Commands\Test;
+use Feek\LaravelGitHooks\Commands\PhpUnit;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelGitHooksServiceProvider extends ServiceProvider
@@ -21,10 +21,10 @@ class LaravelGitHooksServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                CheckStyle::class,
-                FixStyle::class,
+                Phpcs::class,
+                Phpcbf::class,
                 InstallHooks::class,
-                Test::class,
+                PhpUnit::class,
                 PreCommit::class,
                 PrePush::class
             ]);

@@ -11,7 +11,7 @@ return [
     | commit will fail. Add as many or few as you want.
     */
     'pre-commit' => [
-        'hooks:check-style',
+        'hooks:phpcs',
     ],
 
     /*
@@ -24,7 +24,7 @@ return [
     | push will fail. Add as many or few as you want.
     */
     'pre-push' => [
-        'hooks:test'
+        'hooks:phpunit'
     ],
 
     /*

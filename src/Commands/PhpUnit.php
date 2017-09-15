@@ -5,14 +5,14 @@ namespace Feek\LaravelGitHooks\Commands;
 use Illuminate\Console\Command;
 use PHPUnit\TextUI\TestRunner;
 
-class Test extends Command
+class PhpUnit extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'hooks:test';
+    protected $signature = 'hooks:phpunit';
 
     /**
      * The console command description.

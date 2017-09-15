@@ -40,10 +40,10 @@ Edit your laravel project's `composer.json` so that these hooks are installed fo
 <?php
 return [
     'pre-commit' => [
-        'hooks:check-style',
+        'hooks:phpcs',
     ],
     'pre-push' => [
-        'hooks:test'
+        'hooks:phpunit'
     ]
 ];
 ```
