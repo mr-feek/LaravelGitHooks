@@ -2,9 +2,7 @@
 
 namespace Feek\LaravelGitHooks\Commands;
 
-use Illuminate\Console\Command;
-
-class CheckStyle extends Command
+class CheckStyle extends PHPCodeSnifferCommand
 {
     /**
      * The name and signature of the console command.
@@ -18,17 +16,7 @@ class CheckStyle extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $description = 'Run phpcs on the given files';
 
     /**
      * Execute the console command.
@@ -42,8 +30,10 @@ class CheckStyle extends Command
 
         $this->info('running phpcs...');
 
+        $standard = $this->getCodingStandard();
+
         exec(
-            "$phpcs -p --standard=PSR2 $dirToCheckStyle",
+            "$phpcs -p --standard=$standard $dirToCheckStyle",
                 $output,
                 $statusCode
         );

@@ -2,9 +2,7 @@
 
 namespace Feek\LaravelGitHooks\Commands;
 
-use Illuminate\Console\Command;
-
-class FixStyle extends Command
+class FixStyle extends PHPCodeSnifferCommand
 {
     /**
      * The name and signature of the console command.
@@ -18,17 +16,7 @@ class FixStyle extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $description = 'Run phpcbf on the given files';
 
     /**
      * Execute the console command.
@@ -40,8 +28,10 @@ class FixStyle extends Command
         $dirToFixStyle = app_path();
         $phpcbf = base_path() . '/vendor/bin/phpcbf';
 
+        $standard = $this->getCodingStandard();
+
         exec(
-            "$phpcbf -p --standard=PSR2 $dirToFixStyle",
+            "$phpcbf -p --standard=$standard $dirToFixStyle",
             $output,
             $statusCode
         );
