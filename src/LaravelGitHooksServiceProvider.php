@@ -28,6 +28,14 @@ class LaravelGitHooksServiceProvider extends ServiceProvider
                 PreCommit::class,
                 PrePush::class
             ]);
+
+            $this->publishes([
+                __DIR__.'/Config/hooks.php' => config_path('hooks.php'),
+            ]);
+
+            $this->mergeConfigFrom(
+                __DIR__.'/Config/hooks.php', 'hooks'
+            );
         }
     }
 

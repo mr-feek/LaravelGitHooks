@@ -37,6 +37,16 @@ class PrePush extends Command
      */
     public function handle()
     {
-        return $this->call('hooks:test');
+        foreach (config('hooks.pre-push') as $command) {
+            $statusCode = $this->call($command);
+
+            if ($statusCode !== 0) {
+                return $statusCode;
+            }
+        }
+
+        $this->info('push allowed!');
+
+        return 0;
     }
 }

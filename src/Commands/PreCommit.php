@@ -38,6 +38,16 @@ class PreCommit extends Command
      */
     public function handle()
     {
-        return $this->call('hooks:check-style');
+        foreach (config('hooks.pre-commit') as $command) {
+            $statusCode = $this->call($command);
+
+            if ($statusCode !== 0) {
+                return $statusCode;
+            }
+        }
+
+        $this->info('commit allowed!');
+
+        return 0;
     }
 }
