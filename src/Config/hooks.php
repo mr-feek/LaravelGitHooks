@@ -11,7 +11,7 @@ return [
     | commit will fail. Add as many or few as you want.
     */
     'pre-commit' => [
-        'hooks:phpcs',
+        'hooks:phpcs --diff',
     ],
 
     /*

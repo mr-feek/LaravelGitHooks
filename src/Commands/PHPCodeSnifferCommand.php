@@ -3,6 +3,7 @@
 namespace Feek\LaravelGitHooks\Commands;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Input\InputOption;
 
 abstract class PHPCodeSnifferCommand extends Command
 {
@@ -30,18 +31,39 @@ abstract class PHPCodeSnifferCommand extends Command
     abstract function getSuccessMessage();
 
     /**
+     * @return array
+     */
+    public function getOptions()
+    {
+        return [
+            ['diff', null, InputOption::VALUE_OPTIONAL, 'only pass the currently staged files']
+        ];
+    }
+
+    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-        $dirToCheckStyle = app_path();
+        $filesToCheck = app_path();
+
+        if ($this->option('diff')) {
+            // only check the current files that are staged
+            exec(
+                'git diff --cached --name-only',
+                $filesToCheck
+            );
+
+            $filesToCheck = implode($filesToCheck, ' ');
+        }
+
         $executable = $this->getCodeSnifferExecutable();
         $standard = $this->getCodingStandard();
 
         exec(
-            "$executable -p --standard=$standard $dirToCheckStyle",
+            "$executable -p --standard=$standard $filesToCheck",
             $output,
             $statusCode
         );

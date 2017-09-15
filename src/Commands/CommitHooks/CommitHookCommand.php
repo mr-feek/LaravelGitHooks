@@ -14,10 +14,17 @@ abstract class CommitHookCommand extends Command
     public function handle()
     {
         foreach (config($this->getConfigKey()) as $command) {
-            $this->info('git hook invoking: ' . $command);
-            $statusCode = $this->call($command);
+            // these commands in the config might be the command name + options.
+            $parts = explode(' ', $command, 2);
+            $commandName = $parts[0];
+            $arguments = $parts[1] ? explode(' ', $parts[1]) : [];
+
+            $this->line('git hook invoking: ' . $commandName . ' ' . implode($arguments, ' '));
+
+            $statusCode = $this->call($commandName, $arguments);
 
             if ($statusCode !== 0) {
+                $this->error('git hook check failed');
                 return $statusCode;
             }
         }
