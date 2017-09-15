@@ -7,8 +7,13 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-This package provides helpful git hooks for laravel projects. This prevents developers from committing code that does not 
-meet the projects style guide (PSR2), and prevents a push if tests are failing (phpunit)
+This package provides a means to add custom git hooks to your laravel project.
+
+By default, this package ships with hooks for:
+ - phpunit
+ - phpcs. 
+ 
+ Of course, these are customizable and you can easily create and register your own hooks to be run.
 
 
 ## Install
@@ -25,6 +30,22 @@ Edit your laravel project's `composer.json` so that these hooks are installed fo
     ...
     "@php artisan hooks:install"
 ]
+```
+
+## Configuration
+- Publish this package's configuration file: `php artisan vendor:publish --provider="Feek\LaravelGitHooks\LaravelGitHooksServiceProvider"`
+- Register specific commands to be run in the configuration array. For example, all commands nested within the `pre-commit` array key will be run prior to a git commit. All commands nested within the `pre-push` array key will be run prior to a git push. If any of these registered commands fail, then the git action will be prevented.
+
+```php
+<?php
+return [
+    'pre-commit' => [
+        'hooks:check-style',
+    ],
+    'pre-push' => [
+        'hooks:test'
+    ]
+];
 ```
 
 
