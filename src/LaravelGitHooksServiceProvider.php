@@ -5,8 +5,8 @@ namespace Feek\LaravelGitHooks;
 use Feek\LaravelGitHooks\Commands\CheckStyle;
 use Feek\LaravelGitHooks\Commands\FixStyle;
 use Feek\LaravelGitHooks\Commands\InstallHooks;
-use Feek\LaravelGitHooks\Commands\PreCommit;
-use Feek\LaravelGitHooks\Commands\PrePush;
+use Feek\LaravelGitHooks\Commands\CommitHooks\PreCommit;
+use Feek\LaravelGitHooks\Commands\CommitHooks\PrePush;
 use Feek\LaravelGitHooks\Commands\Test;
 use Illuminate\Support\ServiceProvider;
 
