@@ -74,6 +74,11 @@ abstract class SnifferCommand extends Command
             );
 
             $filesToCheck = implode($filesToCheck, ' ');
+
+            if (!$filesToCheck) {
+                $this->warn('skipping check because no files have been passed');
+                return 0;
+            }
         }
 
         $executable = $this->getCodeSnifferExecutable();
