@@ -57,8 +57,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT
 
 ## Credits
 
-- [Fiachra McDermott][link-author]
-- [All Contributors][link-contributors]
+- [Fiachra McDermott][http://feek.rocks]
+- [All Contributors][CONTRIBUTING.md]
 
 ## License
 
