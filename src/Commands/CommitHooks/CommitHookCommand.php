@@ -17,7 +17,7 @@ abstract class CommitHookCommand extends Command
             // these commands in the config might be the command name + options.
             $parts = explode(' ', $command, 2);
             $commandName = $parts[0];
-            $arguments = $parts[1] ? explode(' ', $parts[1]) : [];
+            $arguments = isset($parts[1]) ? explode(' ', $parts[1]) : [];
 
             $this->line('git hook invoking: ' . $commandName . ' ' . implode($arguments, ' '));
 
