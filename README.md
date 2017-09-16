@@ -30,6 +30,15 @@ Edit your laravel project's `composer.json` so that these hooks are installed fo
 ]
 ```
 
+If you are using a version of Laravel < 5.5, you will need to register the service provider.
+
+In `app/Providers/AppServiceProvider`'s `register` function, add the following:
+```
+if ($this->app->environment() !== 'production') {
+    $this->app->register(LaravelGitHooksServiceProvider::class);
+}
+```
+
 ## Configuration
 - Publish this package's configuration file: `php artisan vendor:publish --provider="Feek\LaravelGitHooks\LaravelGitHooksServiceProvider"`
 - Register specific commands to be run in the configuration array. For example, all commands nested within the `pre-commit` array key will be run prior to a git commit. All commands nested within the `pre-push` array key will be run prior to a git push. If any of these registered commands fail, then the git action will be prevented.
