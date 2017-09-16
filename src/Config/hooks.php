@@ -12,6 +12,7 @@ return [
     */
     'pre-commit' => [
         'hooks:phpcs --diff',
+        'hooks:eslint --diff',
     ],
 
     /*
