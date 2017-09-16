@@ -21,7 +21,13 @@ abstract class CommitHookCommand extends Command
 
             $this->line('git hook invoking: ' . $commandName . ' ' . implode($arguments, ' '));
 
-            $statusCode = $this->call($commandName, $arguments);
+            // `call` expects commands to be in the format ['--flag' => true]. We need to turn this flat array into an associative array
+            $formattedArguments = [];
+            foreach ($arguments as $argument) {
+                $formattedArguments[$argument] = true;
+            }
+
+            $statusCode = $this->call($commandName, $formattedArguments);
 
             if ($statusCode !== 0) {
                 $this->error('git hook check failed');
