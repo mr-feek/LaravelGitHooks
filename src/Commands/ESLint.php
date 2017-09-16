@@ -5,6 +5,7 @@ namespace Feek\LaravelGitHooks\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use PHPUnit\TextUI\TestRunner;
+use Symfony\Component\Console\Input\InputOption;
 
 class ESLint extends SnifferCommand
 {
@@ -13,7 +14,7 @@ class ESLint extends SnifferCommand
      *
      * @var string
      */
-    protected $signature = 'hooks:eslint {--diff}';
+    protected $signature = 'hooks:eslint {--diff} {--fix}';
 
     /**
      * The console command description.
@@ -21,6 +22,19 @@ class ESLint extends SnifferCommand
      * @var string
      */
     protected $description = 'Runs ESLint';
+
+    /**
+     * @return array
+     */
+    public function getOptions()
+    {
+        return array_merge([
+            parent::getOptions(),
+            [
+                ['fix', null, InputOption::VALUE_OPTIONAL, 'automatically try to fix the found issues']
+            ]
+        ]);
+    }
 
     /**
      * @return string
@@ -35,7 +49,7 @@ class ESLint extends SnifferCommand
      */
     function getErrorMessage()
     {
-        return 'eslint failed!';
+        return 'eslint failed! Try running `hooks:eslint --fix` to automatically fix';
     }
 
     /**
@@ -64,6 +78,12 @@ class ESLint extends SnifferCommand
 
     function getAdditionalFlags()
     {
-        return '--quiet';
+        $flags = '--quiet';
+
+        if ($this->option('fix')) {
+            $flags .= ' --fix';
+        }
+
+        return $flags;
     }
 }
