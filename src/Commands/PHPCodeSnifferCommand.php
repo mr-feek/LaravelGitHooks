@@ -69,8 +69,10 @@ abstract class PHPCodeSnifferCommand extends Command
         );
 
         if ($statusCode !== 0) {
-            // todo: pretty!
-            $this->alert(print_r($output, true));
+            foreach ($output as $line) {
+                $this->line($line);
+            }
+
             $this->error($this->getErrorMessage());
         } else {
             $this->info($this->getSuccessMessage());
