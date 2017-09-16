@@ -52,7 +52,7 @@ abstract class PHPCodeSnifferCommand extends Command
         if ($this->option('diff')) {
             // only check the current files that are staged
             exec(
-                'git diff --cached --name-only --diff-filter=ACMR',
+                'git diff --cached --name-only --diff-filter=ACMR HEAD',
                 $filesToCheck
             );
 
