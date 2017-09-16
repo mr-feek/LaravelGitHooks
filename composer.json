@@ -1,10 +1,15 @@
 {
     "name": "mr-feek/laravel-git-hooks",
     "type": "library",
-    "description": "git hooks for laravel",
+    "description": "A simple laravel package for adding custom git hooks to your laravel projects. Ships with phpunit, phpcs, and eslint",
     "keywords": [
         "Feek",
-        "LaravelGitHooks"
+        "LaravelGitHooks",
+        "Laravel",
+        "Git hooks",
+        "Laravel phpunit",
+        "Laravel phpcs",
+        "Laravel hooks"
     ],
     "homepage": "https://github.com/mr-feek/LaravelGitHooks",
     "license": "MIT",
