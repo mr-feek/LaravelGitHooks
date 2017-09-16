@@ -2,6 +2,7 @@
 
 namespace Feek\LaravelGitHooks;
 
+use Feek\LaravelGitHooks\Commands\ESLint;
 use Feek\LaravelGitHooks\Commands\Phpcs;
 use Feek\LaravelGitHooks\Commands\Phpcbf;
 use Feek\LaravelGitHooks\Commands\InstallHooks;
@@ -21,6 +22,7 @@ class LaravelGitHooksServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                ESLint::class,
                 Phpcs::class,
                 Phpcbf::class,
                 InstallHooks::class,
