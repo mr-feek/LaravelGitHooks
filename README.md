@@ -11,7 +11,8 @@ This package provides a means to add custom git hooks to your laravel project.
 
 By default, this package ships with hooks for:
  - phpunit
- - phpcs. 
+ - phpcs
+ - eslint
  
  Of course, these are customizable and you can easily create and register your own hooks to be run.
 
@@ -40,7 +41,8 @@ Edit your laravel project's `composer.json` so that these hooks are installed fo
 <?php
 return [
     'pre-commit' => [
-        'hooks:phpcs',
+        'hooks:phpcs --diff',
+        'hooks:eslint --diff --fix',
     ],
     'pre-push' => [
         'hooks:phpunit'
