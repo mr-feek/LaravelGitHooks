@@ -19,7 +19,7 @@ By default, this package ships with hooks for:
 Via Composer
 
 ``` bash
-$ composer require mr-feek/laravel-git-hooks
+$ composer require mr-feek/laravel-git-hooks --dev
 ```
 
 Edit your laravel project's `composer.json` so that these hooks are installed for every developer after they use composer.
