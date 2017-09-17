@@ -2,7 +2,6 @@
 
 namespace Feek\LaravelGitHooks;
 
-use Feek\LaravelGitHooks\Commands\CommitHooks\TestCommand;
 use Feek\LaravelGitHooks\Commands\ESLint;
 use Feek\LaravelGitHooks\Commands\Phpcs;
 use Feek\LaravelGitHooks\Commands\Phpcbf;
