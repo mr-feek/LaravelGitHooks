@@ -1,6 +1,6 @@
 <?php
 
-namespace Feek\Tests\Acceptance;
+namespace Feek\Tests\Unit;
 
 use Feek\LaravelGitHooks\Commands\CommitHooks\CommitHookCommand;
 use Mockery;
