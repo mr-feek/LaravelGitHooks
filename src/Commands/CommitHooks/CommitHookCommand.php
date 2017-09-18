@@ -2,10 +2,11 @@
 
 namespace Feek\LaravelGitHooks\Commands\CommitHooks;
 
-use Illuminate\Console\Command;
+use Feek\LaravelGitHooks\Commands\BaseCommand;
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Terminal;
 
-abstract class CommitHookCommand extends Command
+abstract class CommitHookCommand extends BaseCommand
 {
     /**
      * Execute the console command.
@@ -14,6 +15,19 @@ abstract class CommitHookCommand extends Command
      */
     public function handle()
     {
+        $terminal = new Terminal();
+        $width = $terminal->getWidth();
+
+
+        if ($width >= 80) {
+            $this->line(<<<EOT
+           __             ___          __    ___          __   __        __  
+|     /\  |__)  /\  \  / |__  |       / _` |  |     |__| /  \ /  \ |__/ /__` 
+|___ /~~\ |  \ /~~\  \/  |___ |___    \__> |  |     |  | \__/ \__/ |  \ .__/                                                                         
+EOT
+                , null, null, false);
+        }
+
         $commands = config($this->getConfigKey());
 
         if ($commands) {
@@ -25,18 +39,18 @@ abstract class CommitHookCommand extends Command
 
                 $formattedArguments = $this->buildArgumentArrayFromArgumentString($commandName, $arguments);
 
-                $this->line('git hook invoking: ' . $commandName . ' ' . implode($arguments, ' '));
+                $this->line('invoking: ' . $commandName . ' ' . implode($arguments, ' '));
 
                 $statusCode = $this->call($commandName, $formattedArguments);
 
                 if ($statusCode !== 0) {
-                    $this->error('git hook check failed');
+                    $this->error('check failed');
                     return $statusCode;
                 }
             }
         }
 
-        $this->info('git hook checks passed!');
+        $this->info('all checks passed!');
 
         return 0;
     }

@@ -2,11 +2,7 @@
 
 namespace Feek\LaravelGitHooks\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
-use PHPUnit\TextUI\TestRunner;
-
-class InstallHooks extends Command
+class InstallHooks extends BaseCommand
 {
     /**
      * The name and signature of the console command.
@@ -21,16 +17,6 @@ class InstallHooks extends Command
      * @var string
      */
     protected $description = 'Installs all laravel-git-hooks to the local .git hooks folder';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Execute the console command.

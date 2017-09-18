@@ -2,10 +2,10 @@
 
 namespace Feek\LaravelGitHooks\Commands;
 
-use Illuminate\Console\Command;
+use PHPUnit\TextUI\Command;
 use PHPUnit\TextUI\TestRunner;
 
-class PhpUnit extends Command
+class PhpUnit extends BaseCommand
 {
     /**
      * The name and signature of the console command.
@@ -38,11 +38,11 @@ class PhpUnit extends Command
      */
     public function handle()
     {
-        $this->info('running test suite...');
+        $this->line('running test suite...');
 
         ob_start();
 
-        $result = (new \PHPUnit\TextUI\Command())->run([
+        $result = (new Command())->run([
             '--disallow-test-output',
             '--stop-on-failure'
         ], false);

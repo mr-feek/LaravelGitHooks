@@ -11,7 +11,7 @@ namespace Feek\LaravelGitHooks\Commands;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 
-abstract class SnifferCommand extends Command
+abstract class SnifferCommand extends BaseCommand
 {
     /**
      * @return string
@@ -76,7 +76,7 @@ abstract class SnifferCommand extends Command
             $filesToCheck = implode($filesToCheck, ' ');
 
             if (!$filesToCheck) {
-                $this->warn('skipping check because no files have been passed');
+                $this->warn('did not find any files to sniff');
                 return 0;
             }
         }
