@@ -15,6 +15,10 @@ abstract class CommitHookCommand extends BaseCommand
      */
     public function handle()
     {
+        if (!config('hooks.enabled')) {
+            return 0;
+        }
+
         $terminal = new Terminal();
         $width = $terminal->getWidth();
 

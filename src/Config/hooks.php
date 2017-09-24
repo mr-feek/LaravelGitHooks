@@ -3,6 +3,17 @@
 return [
     /*
     |--------------------------------------------------------------------------
+    | Git Hooks Enabled
+    |--------------------------------------------------------------------------
+    |
+    | Whether or not to run these sweet, sweet git hooks. You probably want
+    | these disabled on your build servers, etc.
+    |
+    */
+    'enabled' => env('GIT_HOOKS_ENABLED', true),
+
+    /*
+    |--------------------------------------------------------------------------
     | Commands to run pre-commit
     |--------------------------------------------------------------------------
     |
