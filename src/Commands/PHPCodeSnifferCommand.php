@@ -25,6 +25,6 @@ abstract class PHPCodeSnifferCommand extends SnifferCommand
     public function getAdditionalFlags()
     {
         $standard = $this->getCodingStandard();
-        return "-p --standard=$standard";
+        return "-p -n --standard=$standard";
     }
 }
