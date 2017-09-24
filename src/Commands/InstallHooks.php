@@ -35,8 +35,10 @@ class InstallHooks extends BaseCommand
             $destination = $destPath . $file;
             copy($source, $destination);
             chmod($destination, 0775);
-            
-            $this->info("copied $source to $destination");
+
+            $from = str_replace(base_path(), '', realpath($source));
+            $to = str_replace(base_path(), '', realpath($destination));
+            $this->line('<info>Copied File</info> <comment>['.$from.']</comment> <info>To</info> <comment>['.$to.']</comment>');
         }
 
         return 0;
