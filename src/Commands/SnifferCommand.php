@@ -39,19 +39,13 @@ abstract class SnifferCommand extends BaseCommand
     abstract function getFileLocation();
 
     /**
-     * @return string
-     */
-    function getAdditionalFlags() {
-        return '';
-    }
-
-    /**
      * @return array
      */
     public function getOptions()
     {
         return [
-            ['diff', null, InputOption::VALUE_OPTIONAL, 'only pass the currently staged files']
+            ['diff', null, InputOption::VALUE_OPTIONAL, 'only pass the currently staged files'],
+            ['proxiedArguments', null, InputOption::VALUE_OPTIONAL, 'argument list to pass to the underlying process being executed'],
         ];
     }
 
@@ -82,7 +76,8 @@ abstract class SnifferCommand extends BaseCommand
         }
 
         $executable = $this->getCodeSnifferExecutable();
-        $additionalFlags = $this->getAdditionalFlags();
+
+        $additionalFlags = $this->option('proxiedArguments');
 
         exec(
             "$executable $additionalFlags $filesToCheck",

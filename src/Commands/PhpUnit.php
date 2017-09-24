@@ -12,7 +12,7 @@ class PhpUnit extends BaseCommand
      *
      * @var string
      */
-    protected $signature = 'hooks:phpunit';
+    protected $signature = 'hooks:phpunit {--proxiedArguments=}';
 
     /**
      * The console command description.

@@ -47,14 +47,19 @@ if ($this->app->environment() !== 'production') {
 <?php
 return [
     'pre-commit' => [
-        'hooks:phpcs --diff',
-        'hooks:eslint --diff --fix',
+        'hooks:phpcs --diff --proxiedArguments="-p -n --standard=PSR2"',
+        'hooks:eslint --diff --proxiedArguments="--fix --quiet"',
     ],
     'pre-push' => [
         'hooks:phpunit'
     ]
 ];
 ```
+
+##Sniffer Commands
+The `PHPCS`, `PHPCBF`, and `ESLINT` commands all allow you to pass arguments to the underlying process being executed. You
+can utilize this via the `--proxiedArguments` flag. In the code examples above, the following phpcs command will be executed: 
+`phpcs -p -n --standard=PSR2`
 
 ## Change log
 

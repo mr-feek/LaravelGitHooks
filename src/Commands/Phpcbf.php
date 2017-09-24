@@ -9,7 +9,7 @@ class Phpcbf extends PHPCodeSnifferCommand
      *
      * @var string
      */
-    protected $signature = 'hooks:phpcbf {--diff}';
+    protected $signature = 'hooks:phpcbf {--diff}  {--proxiedArguments=}';
 
     /**
      * The console command description.

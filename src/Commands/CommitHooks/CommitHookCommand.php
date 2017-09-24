@@ -39,11 +39,13 @@ EOT
                 // these commands in the config might be the command name + options.
                 $parts = explode(' ', $command, 2);
                 $commandName = $parts[0];
-                $arguments = isset($parts[1]) ? explode(' ', $parts[1]) : [];
+
+                $arguments = isset($parts[1]) ? $parts[1] : '';
 
                 $formattedArguments = $this->buildArgumentArrayFromArgumentString($commandName, $arguments);
 
-                $this->line('invoking: ' . $commandName . ' ' . implode($arguments, ' '));
+                $this->line('invoking: ' . $commandName . ' ' . $arguments);
+
 
                 $statusCode = $this->call($commandName, $formattedArguments);
 
@@ -78,16 +80,26 @@ EOT
      *      ['--flag' => true]
      *  ]
      */
-    public function buildArgumentArrayFromArgumentString($commandName, $arguments)
+    public function buildArgumentArrayFromArgumentString($commandName, $arguments = '')
     {
+        if (!$arguments) {
+            return [];
+        }
+
         $formattedArguments = [];
         $commandBeingCalled = null;
         $requiredArguments = [];
 
-        foreach ($arguments as $argument) {
-            if (Str::startsWith($argument, '--')) {
+        // regex magic for the proxy commands. see CommitHookCommandTest::it_proxies_commands_and_takes_others
+        preg_match_all('~(?=\S)[^\'"\s]*(?:\'[^\']*\'[^\'"\s]*|"[^"]*"[^\'"\s]*)*~', $arguments, $results);
+
+        foreach ($results[0] as $argument) {
+            if (Str::startsWith($argument, '-') || Str::startsWith($argument, '--')) {
                 if (Str::contains($argument, '=')) {
-                    $parts = explode('=', $argument);
+                    $parts = explode('=', $argument, 2);
+                    // strip the beginning and ending quotes
+                    $parts[1] = trim($parts[1], '"');
+
                     $formattedArguments[$parts[0]] = $parts[1];
                     continue;
                 }
@@ -106,8 +118,8 @@ EOT
             // grab the next argument and remove it from the array to avoid maintaining a pointer
             $argumentObject = array_shift($requiredArguments);
             if (!$argumentObject) {
-                // todo: improve messaging
-                throw new \InvalidArgumentException('calling an artisan command with invalid arguments from a git hook.');
+                // then this means that too many arguments have been passed for this command to handle
+                throw new \InvalidArgumentException("calling $commandName with invalid argument from a git hook: $argument");
             }
 
             $argumentName = $argumentObject->getName();

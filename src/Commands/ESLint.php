@@ -14,7 +14,7 @@ class ESLint extends SnifferCommand
      *
      * @var string
      */
-    protected $signature = 'hooks:eslint {--diff} {--fix}';
+    protected $signature = 'hooks:eslint {--diff}  {--proxiedArguments=}';
 
     /**
      * The console command description.
@@ -22,19 +22,6 @@ class ESLint extends SnifferCommand
      * @var string
      */
     protected $description = 'Runs ESLint';
-
-    /**
-     * @return array
-     */
-    public function getOptions()
-    {
-        return array_merge([
-            parent::getOptions(),
-            [
-                ['fix', null, InputOption::VALUE_OPTIONAL, 'automatically try to fix the found issues']
-            ]
-        ]);
-    }
 
     /**
      * @return string
@@ -74,16 +61,5 @@ class ESLint extends SnifferCommand
     function getFileLocation()
     {
         return resource_path('assets/js');
-    }
-
-    function getAdditionalFlags()
-    {
-        $flags = '--quiet';
-
-        if ($this->option('fix')) {
-            $flags .= ' --fix';
-        }
-
-        return $flags;
     }
 }

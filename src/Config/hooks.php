@@ -22,8 +22,8 @@ return [
     | commit will fail. Add as many or few as you want.
     */
     'pre-commit' => [
-        'hooks:phpcs --diff',
-        'hooks:eslint --diff --fix',
+        'hooks:phpcs --diff --proxiedArguments="-p -n --standard=PSR2"',
+        'hooks:eslint --diff --proxiedArguments="--fix --quiet"',
     ],
 
     /*
@@ -38,14 +38,4 @@ return [
     'pre-push' => [
         'hooks:phpunit'
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | PHP Coding Standard
-    |--------------------------------------------------------------------------
-    |
-    | Choose any valid phpcs coding standard.
-    |
-    */
-    'php-standard' => 'PSR2'
 ];

@@ -9,7 +9,7 @@ class Phpcs extends PHPCodeSnifferCommand
      *
      * @var string
      */
-    protected $signature = 'hooks:phpcs {--diff}';
+    protected $signature = 'hooks:phpcs {--diff} {--proxiedArguments=}';
 
     /**
      * The console command description.
