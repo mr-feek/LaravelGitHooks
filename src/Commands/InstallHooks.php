@@ -25,6 +25,10 @@ class InstallHooks extends BaseCommand
      */
     public function handle()
     {
+        if (!config('hooks.enabled')) {
+            return 0;
+        }
+        
         $srcPath = __DIR__ . '/../Hooks/';
         $destPath = base_path() . '/.git/hooks/';
 
