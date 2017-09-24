@@ -56,7 +56,7 @@ return [
 ];
 ```
 
-##Sniffer Commands
+## Sniffer Commands
 The `PHPCS`, `PHPCBF`, and `ESLINT` commands all allow you to pass arguments to the underlying process being executed. You
 can utilize this via the `--proxiedArguments` flag. In the code examples above, the following phpcs command will be executed: 
 `phpcs -p -n --standard=PSR2`
