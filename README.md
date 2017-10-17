@@ -4,9 +4,9 @@
 [![Total Downloads](https://poser.pugx.org/mr-feek/laravel-git-hooks/downloads)](https://packagist.org/packages/mr-feek/laravel-git-hooks)
 [![License](https://poser.pugx.org/mr-feek/laravel-git-hooks/license)](https://packagist.org/packages/mr-feek/laravel-git-hooks)
 
-This package provides a means to add custom git hooks to your laravel project.
+This package provides a means to add custom git hooks to your laravel project. Easily configure any artisan command to be fired throughout the git-hook process.
 
-By default, this package ships with hooks for:
+By default, this package ships with hooks for running:
  - phpunit
  - phpcs
  - eslint
