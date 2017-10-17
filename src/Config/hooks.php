@@ -28,6 +28,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Commands to run prepare-commit-msg
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you should list each artisan command that you want run
+    | prior to a git push. If any of these commands fail, then the
+    | push will fail. Add as many or few as you want.
+    */
+    'prepare-commit-msg' => [],
+
+    /*
+    |--------------------------------------------------------------------------
     | Commands to run pre-push
     |--------------------------------------------------------------------------
     |

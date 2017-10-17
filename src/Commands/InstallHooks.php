@@ -32,7 +32,7 @@ class InstallHooks extends BaseCommand
         $srcPath = __DIR__ . '/../Hooks/';
         $destPath = base_path() . '/.git/hooks/';
 
-        $files = ['pre-commit', 'pre-push'];
+        $files = ['pre-commit', 'pre-push', 'prepare-commit-msg'];
 
         foreach($files as $file) {
             $source = $srcPath . $file . '.sh';
