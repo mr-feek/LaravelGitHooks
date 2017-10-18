@@ -51,4 +51,17 @@ return [
     'pre-push' => [
         'hooks:phpunit'
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Commands to run post-checkout
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you should list each artisan command that you want run
+    | after git checkout (also invoked on git clone). This hook cannot affect 
+    | the outcome of git checkout. Add as many or few as you want.
+    */
+    'post-checkout' => [
+        //
+    ],
 ];
