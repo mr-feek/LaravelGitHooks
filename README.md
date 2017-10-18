@@ -1,8 +1,16 @@
 # LaravelGitHooks
 
-[![Latest Stable Version](https://poser.pugx.org/mr-feek/laravel-git-hooks/v/stable)](https://packagist.org/packages/mr-feek/laravel-git-hooks)
+<p align="center">
+    
+![Laravel Git Hooks](https://i.imgur.com/guHu5ep.png)
+
+</p>
+
+## This is a community project and not an "official" Laravel one
+[![Latest Stable Version](https://poser.pugx.org/mr-feek/laravel-git-hooks/v/stable)](https://packagist.org/packages/mr-feek/laravel-git-hooks) 
 [![Total Downloads](https://poser.pugx.org/mr-feek/laravel-git-hooks/downloads)](https://packagist.org/packages/mr-feek/laravel-git-hooks)
 [![License](https://poser.pugx.org/mr-feek/laravel-git-hooks/license)](https://packagist.org/packages/mr-feek/laravel-git-hooks)
+
 
 This package provides a means to add custom git hooks to your laravel project. Easily configure any artisan command to be fired throughout the git-hook process.
 
@@ -73,6 +81,7 @@ Wondering how to go about working on a laravel package? See http://laraveldaily.
 
 - [Fiachra McDermott][http://feek.rocks]
 - [All Contributors][CONTRIBUTING.md]
+- Fish hook icon originally provided by Carson Wittenberg.
 
 ## License
 
