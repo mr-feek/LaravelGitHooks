@@ -6,13 +6,17 @@
 
 This package provides a means to add custom git hooks to your laravel project. Easily configure any artisan command to be fired throughout the git-hook process.
 
-By default, this package ships with hooks for running:
- - phpunit
- - phpcs
- - eslint
+By default, this package ships with artisan commands for running:
+- phpunit
+- phpcs
+- eslint
  
- Of course, these are customizable and you can easily create and register your own hooks to be run.
+Currently, the following git hooks are supported:
+- pre-commit
+- prepare-commit-msg
+- pre-push
 
+Need one that isn't listed here? Feel free to open a PR!
 
 ## Install
 
@@ -28,15 +32,6 @@ Edit your laravel project's `composer.json` so that these hooks are installed fo
     ...
     "@php artisan hooks:install"
 ]
-```
-
-If you are using a version of Laravel < 5.5, you will need to register the service provider.
-
-In `app/Providers/AppServiceProvider`'s `register` function, add the following:
-```
-if ($this->app->environment() !== 'production') {
-    $this->app->register(LaravelGitHooksServiceProvider::class);
-}
 ```
 
 ## Configuration
@@ -61,6 +56,9 @@ The `PHPCS`, `PHPCBF`, and `ESLINT` commands all allow you to pass arguments to 
 can utilize this via the `--proxiedArguments` flag. In the code examples above, the following phpcs command will be executed: 
 `phpcs -p -n --standard=PSR2`
 
+## Supported Versions Of Laravel
+Laravel ^5.5 is actively supported. Need support for earlier versions of Laravel? Feel free to open a PR
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
@@ -68,6 +66,8 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
+
+Wondering how to go about working on a laravel package? See http://laraveldaily.com/how-to-create-a-laravel-5-package-in-10-easy-steps/ and https://laravel.com/docs/5.5/packages
 
 ## Credits
 
