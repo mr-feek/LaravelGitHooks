@@ -2,6 +2,8 @@
 
 namespace Feek\LaravelGitHooks\Commands;
 
+use Symfony\Component\Finder\Finder;
+
 class InstallHooks extends BaseCommand
 {
     /**
@@ -32,11 +34,12 @@ class InstallHooks extends BaseCommand
         $srcPath = __DIR__ . '/../Hooks/';
         $destPath = base_path() . '/.git/hooks/';
 
-        $files = ['pre-commit', 'pre-push'];
+        $finder = new Finder();
+        $finder->files()->in($srcPath)->name('*.sh');
 
-        foreach($files as $file) {
-            $source = $srcPath . $file . '.sh';
-            $destination = $destPath . $file;
+        foreach ($finder as $file) {
+            $source = $file->getRealPath();
+            $destination = $destPath . $file->getRelativePathname();
             copy($source, $destination);
             chmod($destination, 0775);
 
