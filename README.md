@@ -79,8 +79,8 @@ Wondering how to go about working on a laravel package? See http://laraveldaily.
 
 ## Credits
 
-- [Fiachra McDermott][http://feek.rocks]
-- [All Contributors][CONTRIBUTING.md]
+- [Fiachra McDermott](http://feek.rocks)
+- [All Contributors](CONTRIBUTING.md)
 - Fish hook icon originally provided by Carson Wittenberg.
 
 ## License
