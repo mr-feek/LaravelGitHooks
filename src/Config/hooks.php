@@ -32,10 +32,12 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here is where you should list each artisan command that you want run
-    | prior to a git push. If any of these commands fail, then the
-    | push will fail. Add as many or few as you want.
+    | while preparing the commit msg. If any of these commands fail, then
+    | the commit will be aborted.
     */
-    'prepare-commit-msg' => [],
+    'prepare-commit-msg' => [
+        //
+    ],
 
     /*
     |--------------------------------------------------------------------------
