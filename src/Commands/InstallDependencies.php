@@ -2,14 +2,14 @@
 
 namespace Feek\LaravelGitHooks\Commands;
 
-class ComposerInstall extends BaseCommand
+class InstallDependencies extends BaseCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'hooks:composer-install';
+    protected $signature = 'hooks:install-deps';
 
     /**
      * The console command description.
