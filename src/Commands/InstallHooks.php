@@ -7,6 +7,22 @@ use Symfony\Component\Finder\Finder;
 class InstallHooks extends BaseCommand
 {
     /**
+     * @var Finder
+     */
+    private $finder;
+
+
+    /**
+     * InstallHooks constructor.
+     * @param Finder $finder
+     */
+    public function __construct(Finder $finder)
+    {
+        parent::__construct();
+        $this->finder = $finder;
+    }
+
+    /**
      * The name and signature of the console command.
      *
      * @var string
@@ -34,10 +50,9 @@ class InstallHooks extends BaseCommand
         $srcPath = __DIR__ . '/../Hooks/';
         $destPath = base_path() . '/.git/hooks/';
 
-        $finder = new Finder();
-        $finder->files()->in($srcPath)->name('*.sh');
+        $this->finder->files()->in($srcPath)->name('*.sh');
 
-        foreach ($finder as $file) {
+        foreach ($this->finder as $file) {
             $source = $file->getRealPath();
             $destination = $destPath . $file->getRelativePathname();
             copy($source, $destination);
