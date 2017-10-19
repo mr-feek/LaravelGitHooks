@@ -2,12 +2,15 @@
 
 namespace Feek\LaravelGitHooks;
 
+use Feek\LaravelGitHooks\Commands\InstallDependencies;
 use Feek\LaravelGitHooks\Commands\ESLint;
 use Feek\LaravelGitHooks\Commands\Phpcs;
 use Feek\LaravelGitHooks\Commands\Phpcbf;
 use Feek\LaravelGitHooks\Commands\InstallHooks;
 use Feek\LaravelGitHooks\Commands\CommitHooks\PreCommit;
 use Feek\LaravelGitHooks\Commands\CommitHooks\PrePush;
+use Feek\LaravelGitHooks\Commands\CommitHooks\PrepareCommitMsg;
+use Feek\LaravelGitHooks\Commands\CommitHooks\PostCheckout;
 use Feek\LaravelGitHooks\Commands\PhpUnit;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,13 +25,16 @@ class LaravelGitHooksServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                InstallDependencies::class,
                 ESLint::class,
                 Phpcs::class,
                 Phpcbf::class,
                 InstallHooks::class,
                 PhpUnit::class,
                 PreCommit::class,
-                PrePush::class
+                PrePush::class,
+                PrepareCommitMsg::class,
+                PostCheckout::class
             ]);
 
             $this->publishes([

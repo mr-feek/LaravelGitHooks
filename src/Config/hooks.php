@@ -28,6 +28,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Commands to run prepare-commit-msg
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you should list each artisan command that you want run
+    | while preparing the commit msg. If any of these commands fail, then
+    | the commit will be aborted.
+    */
+    'prepare-commit-msg' => [
+        //
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Commands to run pre-push
     |--------------------------------------------------------------------------
     |
@@ -37,5 +50,18 @@ return [
     */
     'pre-push' => [
         'hooks:phpunit'
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Commands to run post-checkout
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you should list each artisan command that you want run
+    | after git checkout (also invoked on git clone). This hook cannot affect 
+    | the outcome of git checkout. Add as many or few as you want.
+    */
+    'post-checkout' => [
+        'hooks:install-deps'
     ],
 ];
