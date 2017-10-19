@@ -2,6 +2,8 @@
 
 namespace Feek\LaravelGitHooks\Commands;
 
+use Illuminate\Filesystem\Filesystem;
+
 class InstallDependencies extends BaseCommand
 {
     /**
@@ -16,7 +18,18 @@ class InstallDependencies extends BaseCommand
      *
      * @var string
      */
-    protected $description = 'Run composer install';
+    protected $description = 'Runs composer install, if available';
+
+    /**
+     * @var Filesystem
+     */
+    protected $filesystem;
+
+    public function __construct(Filesystem $filesystem)
+    {
+        parent::__construct();
+        $this->filesystem = $filesystem;
+    }
 
     /**
      * Execute the console command.
@@ -25,12 +38,22 @@ class InstallDependencies extends BaseCommand
      */
     public function handle()
     {
+        $this->composer();
+    }
+
+    protected function composer()
+    {
+        if (!$this->filesystem->exists(base_path('composer.json'))) {
+            return;
+        }
+
         $composerCommand = exec('which composer');
 
         if (! $composerCommand) {
-            $this->warn('composer not installed');
+            $this->warn('composer not found');
             return;
         }
+
         exec($composerCommand . ' install');
     }
 }
