@@ -18,7 +18,7 @@ class InstallDependencies extends BaseCommand
      *
      * @var string
      */
-    protected $description = 'Runs composer install, if available';
+    protected $description = 'Installs php and javascript dependencies, if available';
 
     /**
      * @var Filesystem
@@ -39,6 +39,8 @@ class InstallDependencies extends BaseCommand
     public function handle()
     {
         $this->composer();
+        $this->yarn();
+        $this->npm();
     }
 
     protected function composer()
@@ -47,13 +49,45 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
-        $composerCommand = exec('which composer');
+        $composer = exec('which composer');
 
-        if (! $composerCommand) {
+        if (! $composer) {
             $this->warn('composer not found');
             return;
         }
 
-        exec($composerCommand . ' install');
+        exec($composer . ' install');
+    }
+
+    private function yarn()
+    {
+        if (!$this->filesystem->exists(base_path('yarn.lock'))) {
+            return;
+        }
+
+        $yarn = exec('which yarn');
+
+        if (! $yarn) {
+            $this->warn('yarn not found');
+            return;
+        }
+
+        exec($yarn . ' install');
+    }
+
+    private function npm()
+    {
+        if (!$this->filesystem->exists(base_path('package.lock'))) {
+            return;
+        }
+
+        $npm = exec('which npm');
+
+        if (! $npm) {
+            $this->warn('npm not found');
+            return;
+        }
+
+        exec($npm . ' install');
     }
 }
