@@ -9,6 +9,7 @@ use Feek\LaravelGitHooks\Commands\InstallHooks;
 use Feek\LaravelGitHooks\Commands\CommitHooks\PreCommit;
 use Feek\LaravelGitHooks\Commands\CommitHooks\PrePush;
 use Feek\LaravelGitHooks\Commands\CommitHooks\PrepareCommitMsg;
+use Feek\LaravelGitHooks\Commands\CommitHooks\PostCheckout;
 use Feek\LaravelGitHooks\Commands\PhpUnit;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,7 +31,8 @@ class LaravelGitHooksServiceProvider extends ServiceProvider
                 PhpUnit::class,
                 PreCommit::class,
                 PrePush::class,
-                PrepareCommitMsg::class
+                PrepareCommitMsg::class,
+                PostCheckout::class
             ]);
 
             $this->publishes([
