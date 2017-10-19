@@ -56,7 +56,7 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
-        exec($composer . ' install');
+        system($composer . ' install');
     }
 
     private function yarn()
@@ -72,7 +72,7 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
-        exec($yarn . ' install');
+        system($yarn . ' install');
     }
 
     private function npm()
@@ -88,6 +88,6 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
-        exec($npm . ' install');
+        system($npm . ' install');
     }
 }
