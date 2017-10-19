@@ -62,6 +62,6 @@ return [
     | the outcome of git checkout. Add as many or few as you want.
     */
     'post-checkout' => [
-        //
+        'hooks:install-deps'
     ],
 ];

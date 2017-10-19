@@ -12,19 +12,13 @@
 [![License](https://poser.pugx.org/mr-feek/laravel-git-hooks/license)](https://packagist.org/packages/mr-feek/laravel-git-hooks)
 
 
-This package provides a means to add custom git hooks to your laravel project. Easily configure any artisan command to be fired throughout the git-hook process.
-
-By default, this package ships with artisan commands for running:
-- phpunit
-- phpcs
-- eslint
+This package provides a way to add custom git hooks to your laravel project. Easily configure any artisan command to be fired throughout the git-hook process. Want to ensure that all tests pass before a bad commit is pushed? Now's your chance!
  
 Currently, the following git hooks are supported:
 - pre-commit
 - prepare-commit-msg
 - pre-push
-
-Need one that isn't listed here? Feel free to open a PR!
+- post-checkout
 
 ## Install
 
@@ -44,7 +38,7 @@ Edit your laravel project's `composer.json` so that these hooks are installed fo
 
 ## Configuration
 - Publish this package's configuration file: `php artisan vendor:publish --provider="Feek\LaravelGitHooks\LaravelGitHooksServiceProvider"`
-- Register specific commands to be run in the configuration array. For example, all commands nested within the `pre-commit` array key will be run prior to a git commit. All commands nested within the `pre-push` array key will be run prior to a git push. If any of these registered commands fail, then the git action will be prevented.
+- Register specific artisan commands to be run in the configuration array. For example, all commands nested within the `pre-commit` array key will be run prior to a git commit. All commands nested within the `pre-push` array key will be run prior to a git push. If any of these registered commands fail, then the git action will be prevented.
 
 ```php
 <?php
@@ -55,11 +49,25 @@ return [
     ],
     'pre-push' => [
         'hooks:phpunit'
-    ]
+    ],
+    'post-checkout' => [
+        'hooks:install-deps'
+    ],
+    'prepare-commit-msg' => [
+        //
+    ],
 ];
 ```
 
-## Sniffer Commands
+## Commands
+This package ships with several handy artisan commands which work nicely as git hooks. The following commands come included:
+- phpunit
+- phpcs
+- phpcbf
+- install dependencies (composer, yarn, npm)
+- eslint
+
+### Sniffer Commands
 The `PHPCS`, `PHPCBF`, and `ESLINT` commands all allow you to pass arguments to the underlying process being executed. You
 can utilize this via the `--proxiedArguments` flag. In the code examples above, the following phpcs command will be executed: 
 `phpcs -p -n --standard=PSR2`
