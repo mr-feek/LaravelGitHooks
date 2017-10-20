@@ -22,19 +22,13 @@ abstract class CommitHookCommand extends BaseCommand
         $terminal = new Terminal();
         $width = $terminal->getWidth();
 
-
-        if ($width >= 80) {
-            $this->line(<<<EOT
-           __             ___          __    ___          __   __        __  
-|     /\  |__)  /\  \  / |__  |       / _` |  |     |__| /  \ /  \ |__/ /__` 
-|___ /~~\ |  \ /~~\  \/  |___ |___    \__> |  |     |  | \__/ \__/ |  \ .__/                                                                         
-EOT
-                , null, null, false);
-        }
-
         $commands = config($this->getConfigKey());
 
         if ($commands) {
+            if ($width >= 80) {
+                $this->sayHello();
+            }
+
             foreach ($commands as $command) {
                 // these commands in the config might be the command name + options.
                 $parts = explode(' ', $command, 2);
@@ -127,5 +121,15 @@ EOT
         }
 
         return $formattedArguments;
+    }
+
+    protected function sayHello()
+    {
+        $this->line(<<<EOT
+           __             ___          __    ___          __   __        __  
+|     /\  |__)  /\  \  / |__  |       / _` |  |     |__| /  \ /  \ |__/ /__` 
+|___ /~~\ |  \ /~~\  \/  |___ |___    \__> |  |     |  | \__/ \__/ |  \ .__/                                                                         
+EOT
+            , null, null, false);
     }
 }
