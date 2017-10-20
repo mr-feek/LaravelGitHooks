@@ -11,6 +11,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - enable package discovery for Laravel 5.5
 - added post-checkout git hook #9
 - add install dependencies command #10
+- better detecting of all commit hooks to copy over #6
 
 ### Deprecated
 - Nothing
