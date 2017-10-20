@@ -24,29 +24,31 @@ abstract class CommitHookCommand extends BaseCommand
 
         $commands = config($this->getConfigKey());
 
-        if ($commands) {
-            if ($width >= 80) {
-                $this->sayHello();
-            }
+        if (!$commands) {
+            return 0;
+        }
 
-            foreach ($commands as $command) {
-                // these commands in the config might be the command name + options.
-                $parts = explode(' ', $command, 2);
-                $commandName = $parts[0];
+        if ($width >= 80) {
+            $this->sayHello();
+        }
 
-                $arguments = isset($parts[1]) ? $parts[1] : '';
+        foreach ($commands as $command) {
+            // these commands in the config might be the command name + options.
+            $parts = explode(' ', $command, 2);
+            $commandName = $parts[0];
 
-                $formattedArguments = $this->buildArgumentArrayFromArgumentString($commandName, $arguments);
+            $arguments = isset($parts[1]) ? $parts[1] : '';
 
-                $this->line('invoking: ' . $commandName . ' ' . $arguments);
+            $formattedArguments = $this->buildArgumentArrayFromArgumentString($commandName, $arguments);
+
+            $this->line('invoking: ' . $commandName . ' ' . $arguments);
 
 
-                $statusCode = $this->call($commandName, $formattedArguments);
+            $statusCode = $this->call($commandName, $formattedArguments);
 
-                if ($statusCode !== 0) {
-                    $this->error('check failed');
-                    return $statusCode;
-                }
+            if ($statusCode !== 0) {
+                $this->error('check failed');
+                return $statusCode;
             }
         }
 
