@@ -1,6 +1,6 @@
 <?php
 
-namespace Feek\LaravelGitHooks\Commands;
+namespace Feek\LaravelGitHooks\Commands\Sniff;
 
 abstract class PHPCodeSnifferCommand extends SnifferCommand
 {

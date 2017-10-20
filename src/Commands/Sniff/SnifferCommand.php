@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Feek
- * Date: 9/15/17
- * Time: 9:21 PM
- */
 
-namespace Feek\LaravelGitHooks\Commands;
+namespace Feek\LaravelGitHooks\Commands\Sniff;
 
-use Illuminate\Console\Command;
+use Feek\LaravelGitHooks\Commands\BaseCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 abstract class SnifferCommand extends BaseCommand
