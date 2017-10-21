@@ -31,7 +31,8 @@
     "require-dev": {
         "mockery/mockery": "^0.9.9",
         "orchestra/testbench": "~3.0",
-        "phpunit/phpunit": ">=5.4.3"
+        "phpunit/phpunit": ">=5.4.3",
+        "moon/artisan": "^v1.9"
     },
     "autoload": {
         "psr-4": {
@@ -44,6 +45,9 @@
         }
     },
     "scripts": {
+        "post-autoload-dump": [
+            "@php artisan hooks:install"
+        ]
     },
     "extra": {
         "branch-alias": {
