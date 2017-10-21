@@ -7,6 +7,23 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ## NEXT
 
 ### Added
+- Nothing
+
+### Deprecated
+- Nothing
+
+### Fixed
+- Nothing
+
+### Removed
+- Nothing
+
+### Security
+- Nothing
+
+## [v0.4.0]
+
+### Added
 - prepare-commit-msg git hook
 - enable package discovery for Laravel 5.5
 - added post-checkout git hook #9
