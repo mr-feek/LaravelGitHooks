@@ -7,7 +7,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ## NEXT
 
 ### Added
-- Nothing
+- implemented artisan stub for testing
 
 ### Deprecated
 - Nothing
