@@ -60,7 +60,7 @@ abstract class CommitHookCommand extends BaseCommand
     /**
      * @return string
      */
-    abstract function getConfigKey();
+    abstract protected function getConfigKey();
 
     /**
      * Unfortunately calling artisan commands from within other artisan commands is not as simple as passing in a
@@ -125,13 +125,14 @@ abstract class CommitHookCommand extends BaseCommand
         return $formattedArguments;
     }
 
+    protected function getHookName()
+    {
+        return explode(':', $this->signature)[1];
+    }
+
     protected function sayHello()
     {
-        $this->line(<<<EOT
-           __             ___          __    ___          __   __        __  
-|     /\  |__)  /\  \  / |__  |       / _` |  |     |__| /  \ /  \ |__/ /__` 
-|___ /~~\ |  \ /~~\  \/  |___ |___    \__> |  |     |  | \__/ \__/ |  \ .__/                                                                         
-EOT
-            , null, null, false);
+        $name = $this->getHookName();
+        $this->line("<options=bold>Running $name hooks</>");
     }
 }
