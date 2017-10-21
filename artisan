@@ -59,7 +59,7 @@ app()->instance('config', $config = new Repository([
     'hooks.pre-commit' => [
         'hooks:phpcs --diff --proxiedArguments="-p -n --standard=PSR2"
     '],
-    'pre-push' => [
+    'hooks.pre-push' => [
         'hooks:phpunit'
     ],
 ]));
