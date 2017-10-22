@@ -2,24 +2,36 @@
 
 namespace Feek\LaravelGitHooks\Commands;
 
+use Feek\LaravelGitHooks\Traits\GitHookDelimiter;
+use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
 class UninstallHooks extends BaseCommand
 {
+
+    use GitHookDelimiter;
+
     /**
      * @var Finder
      */
     private $finder;
 
+    /**
+     * @var Filesystem
+     */
+    private $filesystem;
 
     /**
      * InstallHooks constructor.
+     *
      * @param Finder $finder
+     * @param Filesystem $filesystem
      */
-    public function __construct(Finder $finder)
+    public function __construct(Finder $finder, Filesystem $filesystem)
     {
         parent::__construct();
         $this->finder = $finder;
+        $this->filesystem = $filesystem;
     }
 
     /**
@@ -52,10 +64,10 @@ class UninstallHooks extends BaseCommand
         $this->finder->files()->in($hooks)->name('*.sh');
 
         foreach ($this->finder as $file) {
-            $search = '/# LARAVEL GIT HOOKS BEGIN #[\s\S]+?LARAVEL GIT HOOKS END #/m';
+            $search = '/'.$this->delimiterStart().'[\s\S]+?'.$this->delimiterEnd().'/m';
             $content = preg_replace($search, '', $file->getContents());
 
-            file_put_contents($file->getRealPath(), $content);
+            $this->filesystem->put($file->getRealPath(), $content);
 
             $this->line('<info>Restored File</info> <comment>['.$file->getRealPath().']</comment>');
         }
