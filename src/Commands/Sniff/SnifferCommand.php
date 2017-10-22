@@ -2,11 +2,28 @@
 
 namespace Feek\LaravelGitHooks\Commands\Sniff;
 
+use Feek\LaravelGitHooks\ProgramExecutor;
 use Feek\LaravelGitHooks\Commands\BaseCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 abstract class SnifferCommand extends BaseCommand
 {
+    /**
+     * @var ProgramExecutor
+     */
+    protected $programExecutor;
+
+    /**
+     * SnifferCommand constructor.
+     *
+     * @param ProgramExecutor $programExecutor
+     */
+    public function __construct(ProgramExecutor $programExecutor)
+    {
+        parent::__construct();
+        $this->programExecutor = $programExecutor;
+    }
+
     /**
      * @return string
      */
@@ -46,7 +63,7 @@ abstract class SnifferCommand extends BaseCommand
             // only check the current files that are staged
             $filesToCheck = [];
 
-            exec(
+            $this->programExecutor->exec(
                 'git diff --cached --name-only --diff-filter=ACMR HEAD -- "*.' . $this->getFileExtension() . '"',
                 $filesToCheck
             );
@@ -63,7 +80,7 @@ abstract class SnifferCommand extends BaseCommand
 
         $additionalFlags = $this->option('proxiedArguments');
 
-        exec(
+        $this->programExecutor->exec(
             "$executable $additionalFlags $filesToCheck",
             $output,
             $statusCode

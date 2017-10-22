@@ -19,17 +19,10 @@ abstract class CommitHookCommand extends BaseCommand
             return 0;
         }
 
-        $terminal = new Terminal();
-        $width = $terminal->getWidth();
-
         $commands = config($this->getConfigKey());
 
         if (!$commands) {
             return 0;
-        }
-
-        if ($width >= 80) {
-            $this->sayHello();
         }
 
         foreach ($commands as $command) {
