@@ -61,6 +61,10 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
+        if (!$this->confirm('Should we install the composer dependencies?')) {
+            return;
+        }
+
         system($composer . ' install');
     }
 
@@ -82,6 +86,10 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
+        if (!$this->confirm('Should we install the yarn dependencies?')) {
+            return;
+        }
+
         system($yarn . ' install');
     }
 
@@ -100,6 +108,10 @@ class InstallDependencies extends BaseCommand
 
         if (!$this->isFileChanged('package-lock.json')) {
             $this->info('no npm changes detected');
+            return;
+        }
+
+        if (!$this->confirm('Should we install the npm dependencies?')) {
             return;
         }
 
