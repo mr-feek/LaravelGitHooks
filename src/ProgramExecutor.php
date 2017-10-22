@@ -11,11 +11,11 @@ class ProgramExecutor
 {
     public function exec($command = '', &$output = [], &$returnVal = 0)
     {
-        return exec($command, $output, $returnVal);
+        exec($command, $output, $returnVal);
     }
 
     public function system($command = '', &$returnVal = 0)
     {
-        return system($command, $returnVal);
+        system($command, $returnVal);
     }
 }
