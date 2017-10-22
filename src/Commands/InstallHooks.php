@@ -2,10 +2,14 @@
 
 namespace Feek\LaravelGitHooks\Commands;
 
+use Feek\LaravelGitHooks\Traits\GitHookDelimiter;
+use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
 class InstallHooks extends BaseCommand
 {
+    use GitHookDelimiter;
+
     /**
      * The name and signature of the console command.
      *
@@ -26,14 +30,21 @@ class InstallHooks extends BaseCommand
     private $finder;
 
     /**
+     * @var Filesystem
+     */
+    private $filesystem;
+
+    /**
      * InstallHooks constructor.
      *
      * @param Finder $finder
+     * @param Filesystem $filesystem
      */
-    public function __construct(Finder $finder)
+    public function __construct(Finder $finder, Filesystem $filesystem)
     {
         parent::__construct();
         $this->finder = $finder;
+        $this->filesystem = $filesystem;
     }
 
     /**
@@ -56,18 +67,18 @@ class InstallHooks extends BaseCommand
             $source = $file->getRealPath();
             $destination = $destPath.$file->getRelativePathname();
 
-            $sourceContent = PHP_EOL.'# LARAVEL GIT HOOKS BEGIN #'.PHP_EOL.$file->getContents().PHP_EOL.'# LARAVEL GIT HOOKS END #'.PHP_EOL;
-            $destinationContent = file_get_contents($destination);
+            $sourceContent = PHP_EOL.$this->delimiterStart().PHP_EOL.$file->getContents().PHP_EOL.$this->delimiterEnd().PHP_EOL;
+            $destinationContent = $this->filesystem->exists($destination) ? $this->filesystem->get($destination) : '';
 
-            if (str_contains($destinationContent, '# LARAVEL GIT HOOKS BEGIN #')) {
-                $search = '/# LARAVEL GIT HOOKS BEGIN #[\s\S]+?LARAVEL GIT HOOKS END #/m';
+            if (str_contains($destinationContent, $this->delimiterStart())) {
+                $search = '/'.$this->delimiterStart().'[\s\S]+?'.$this->delimiterEnd().'/m';
                 $destinationContent = preg_replace($search, $sourceContent, $destinationContent);
             } else {
                 $destinationContent .= $sourceContent;
             }
 
-            file_put_contents($destination, $destinationContent);
-            chmod($destination, 0775);
+            $this->filesystem->put($destination, $destinationContent);
+            $this->filesystem->chmod($destination, 0775);
 
             $from = str_replace(base_path(), '', realpath($source));
             $to = str_replace(base_path(), '', realpath($destination));
