@@ -1,4 +1,4 @@
-# LaravelGitHooks
+# Laravel Git Hooks
 
 <p align="center">
     
