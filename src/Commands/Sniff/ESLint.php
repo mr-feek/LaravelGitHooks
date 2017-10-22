@@ -26,7 +26,7 @@ class ESLint extends SnifferCommand
     /**
      * @return string
      */
-    function getCodeSnifferExecutable()
+    protected function getCodeSnifferExecutable()
     {
         return  base_path('/node_modules/.bin/eslint');
     }
@@ -34,23 +34,7 @@ class ESLint extends SnifferCommand
     /**
      * @return string
      */
-    function getErrorMessage()
-    {
-        return 'eslint failed! Try running `hooks:eslint --fix` to automatically fix';
-    }
-
-    /**
-     * @return string
-     */
-    function getSuccessMessage()
-    {
-        return 'eslint passed!';
-    }
-
-    /**
-     * @return string
-     */
-    function getFileExtension()
+    protected function getFileExtension()
     {
         return 'js';
     }
@@ -58,7 +42,7 @@ class ESLint extends SnifferCommand
     /**
      * @return string
      */
-    function getFileLocation()
+    protected function getFileLocation()
     {
         return resource_path('assets/js');
     }

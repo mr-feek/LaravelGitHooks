@@ -22,20 +22,4 @@ class Phpcbf extends PHPCodeSnifferCommand
     {
         return base_path() . '/vendor/bin/phpcbf';
     }
-
-    /**
-     * @return string
-     */
-    function getErrorMessage()
-    {
-        return 'PHPCBF failed to fix the issues.';
-    }
-
-    /**
-     * @return string
-     */
-    function getSuccessMessage()
-    {
-        return 'PHPCBF fixed the issues.';
-    }
 }

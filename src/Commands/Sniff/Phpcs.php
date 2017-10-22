@@ -21,24 +21,8 @@ class Phpcs extends PHPCodeSnifferCommand
     /**
      * @return string
      */
-    function getCodeSnifferExecutable()
+    protected function getCodeSnifferExecutable()
     {
         return base_path() . '/vendor/bin/phpcs';
-    }
-
-    /**
-     * @return string
-     */
-    function getErrorMessage()
-    {
-        return 'PHP Code Sniffer did not pass. Try running `php artisan hooks:phpcbf` to automatically fix';
-    }
-
-    /**
-     * @return string
-     */
-    function getSuccessMessage()
-    {
-        return 'PHP Code Sniffer Passed!';
     }
 }

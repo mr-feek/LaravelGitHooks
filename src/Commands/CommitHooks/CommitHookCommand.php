@@ -41,8 +41,7 @@ abstract class CommitHookCommand extends BaseCommand
 
             $formattedArguments = $this->buildArgumentArrayFromArgumentString($commandName, $arguments);
 
-            $this->line('invoking: ' . $commandName . ' ' . $arguments);
-
+            //$this->line('invoking: ' . $commandName . ' ' . $arguments);
 
             $statusCode = $this->call($commandName, $formattedArguments);
 
