@@ -12,6 +12,7 @@ use Feek\LaravelGitHooks\Commands\PhpUnit;
 use Feek\LaravelGitHooks\Commands\Sniff\ESLint;
 use Feek\LaravelGitHooks\Commands\Sniff\Phpcbf;
 use Feek\LaravelGitHooks\Commands\Sniff\Phpcs;
+use Feek\LaravelGitHooks\Commands\UninstallHooks;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelGitHooksServiceProvider extends ServiceProvider
@@ -30,6 +31,7 @@ class LaravelGitHooksServiceProvider extends ServiceProvider
                 Phpcs::class,
                 Phpcbf::class,
                 InstallHooks::class,
+                UninstallHooks::class,
                 PhpUnit::class,
                 PreCommit::class,
                 PrePush::class,
