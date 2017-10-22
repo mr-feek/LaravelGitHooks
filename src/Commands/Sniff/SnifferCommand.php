@@ -10,27 +10,17 @@ abstract class SnifferCommand extends BaseCommand
     /**
      * @return string
      */
-    abstract function getCodeSnifferExecutable();
+    abstract protected function getCodeSnifferExecutable();
 
     /**
      * @return string
      */
-    abstract function getErrorMessage();
+    abstract protected function getFileExtension();
 
     /**
      * @return string
      */
-    abstract function getSuccessMessage();
-
-    /**
-     * @return string
-     */
-    abstract function getFileExtension();
-
-    /**
-     * @return string
-     */
-    abstract function getFileLocation();
+    abstract protected function getFileLocation();
 
     /**
      * @return array
@@ -90,5 +80,45 @@ abstract class SnifferCommand extends BaseCommand
         }
 
         return $statusCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSuccessMessage()
+    {
+        return $this->pad($this->getBaseMessage(), '[' . $this->getCommandName() . ' PASSED]');
+    }
+
+    /**
+     * @return string
+     */
+    public function getErrorMessage()
+    {
+        return $this->pad($this->getBaseMessage(), '[' . $this->getCommandName() . ' FAILED]');
+    }
+
+    protected function getCommandName()
+    {
+        $commandName = explode(':', $this->signature)[1];
+
+        return ucfirst(explode(' ', $commandName)[0]);
+    }
+
+    protected function getBaseMessage()
+    {
+        $name = $this->getCommandName();
+        return "Analyzing code with $name";
+    }
+
+    /**
+     * @param $message
+     * @param $status
+     *
+     * @return string
+     */
+    protected function pad($message, $status)
+    {
+        return str_pad($message, 50, '.') . $status;
     }
 }
