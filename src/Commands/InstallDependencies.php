@@ -2,6 +2,7 @@
 
 namespace Feek\LaravelGitHooks\Commands;
 
+use Feek\LaravelGitHooks\ProgramExecutor;
 use Illuminate\Filesystem\Filesystem;
 
 class InstallDependencies extends BaseCommand
@@ -25,10 +26,22 @@ class InstallDependencies extends BaseCommand
      */
     protected $filesystem;
 
-    public function __construct(Filesystem $filesystem)
+    /**
+     * @var ProgramExecutor
+     */
+    protected $programExecutor;
+
+    /**
+     * InstallDependencies constructor.
+     *
+     * @param Filesystem $filesystem
+     * @param ProgramExecutor $programExecutor
+     */
+    public function __construct(Filesystem $filesystem, ProgramExecutor $programExecutor)
     {
         parent::__construct();
         $this->filesystem = $filesystem;
+        $this->programExecutor = $programExecutor;
     }
 
     /**
@@ -49,7 +62,7 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
-        $composer = exec('which composer');
+        $composer = $this->programExecutor->exec('which composer');
 
         if (! $composer) {
             $this->warn('composer not found');
@@ -61,7 +74,7 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
-        system($composer . ' install');
+        $this->programExecutor->system($composer . ' install');
     }
 
     protected function yarn()
@@ -70,7 +83,7 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
-        $yarn = exec('which yarn');
+        $yarn = $this->programExecutor->exec('which yarn');
 
         if (! $yarn) {
             $this->warn('yarn not found');
@@ -82,7 +95,7 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
-        system($yarn . ' install');
+        $this->programExecutor->system($yarn . ' install');
     }
 
     protected function npm()
@@ -91,7 +104,7 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
-        $npm = exec('which npm');
+        $npm = $this->programExecutor->exec('which npm');
 
         if (! $npm) {
             $this->warn('npm not found');
@@ -103,7 +116,7 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
-        system($npm . ' install');
+        $this->programExecutor->system($npm . ' install');
     }
 
     /**
@@ -115,7 +128,7 @@ class InstallDependencies extends BaseCommand
     {
         // this command is probably only ever going to be run just after checking out another branch, so just assume
         // to check in "git diff"
-        exec( "git diff --name-only --diff-filter=M HEAD -- $file", $output);
+        $this->programExecutor->exec("git diff --name-only --diff-filter=M HEAD -- $file", $output);
         return count($output) > 0;
     }
 }

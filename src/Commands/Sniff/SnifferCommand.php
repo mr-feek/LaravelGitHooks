@@ -2,11 +2,36 @@
 
 namespace Feek\LaravelGitHooks\Commands\Sniff;
 
+use Feek\LaravelGitHooks\CommandOutputFormatter;
+use Feek\LaravelGitHooks\ProgramExecutor;
 use Feek\LaravelGitHooks\Commands\BaseCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 abstract class SnifferCommand extends BaseCommand
 {
+    /**
+     * @var ProgramExecutor
+     */
+    protected $programExecutor;
+
+    /**
+     * @var CommandOutputFormatter
+     */
+    protected $commandOutputFormatter;
+
+    /**
+     * SnifferCommand constructor.
+     *
+     * @param ProgramExecutor $programExecutor
+     * @param CommandOutputFormatter $commandOutputFormatter
+     */
+    public function __construct(ProgramExecutor $programExecutor, CommandOutputFormatter $commandOutputFormatter)
+    {
+        parent::__construct();
+        $this->programExecutor = $programExecutor;
+        $this->commandOutputFormatter = $commandOutputFormatter;
+    }
+
     /**
      * @return string
      */
@@ -46,7 +71,7 @@ abstract class SnifferCommand extends BaseCommand
             // only check the current files that are staged
             $filesToCheck = [];
 
-            exec(
+            $this->programExecutor->exec(
                 'git diff --cached --name-only --diff-filter=ACMR HEAD -- "*.' . $this->getFileExtension() . '"',
                 $filesToCheck
             );
@@ -63,7 +88,7 @@ abstract class SnifferCommand extends BaseCommand
 
         $additionalFlags = $this->option('proxiedArguments');
 
-        exec(
+        $this->programExecutor->exec(
             "$executable $additionalFlags $filesToCheck",
             $output,
             $statusCode
@@ -74,28 +99,12 @@ abstract class SnifferCommand extends BaseCommand
                 $this->line($line);
             }
 
-            $this->error($this->getErrorMessage());
+            $this->error($this->commandOutputFormatter->error($this->getBaseMessage()));
         } else {
-            $this->info($this->getSuccessMessage());
+            $this->info($this->commandOutputFormatter->success($this->getBaseMessage()));
         }
 
         return $statusCode;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSuccessMessage()
-    {
-        return $this->pad($this->getBaseMessage(), '[' . $this->getCommandName() . ' PASSED]');
-    }
-
-    /**
-     * @return string
-     */
-    public function getErrorMessage()
-    {
-        return $this->pad($this->getBaseMessage(), '[' . $this->getCommandName() . ' FAILED]');
     }
 
     protected function getCommandName()
@@ -109,16 +118,5 @@ abstract class SnifferCommand extends BaseCommand
     {
         $name = $this->getCommandName();
         return "Analyzing code with $name";
-    }
-
-    /**
-     * @param $message
-     * @param $status
-     *
-     * @return string
-     */
-    protected function pad($message, $status)
-    {
-        return str_pad($message, 50, '.') . $status;
     }
 }

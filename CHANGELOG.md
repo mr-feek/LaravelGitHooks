@@ -14,6 +14,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Fixed
 - cleaned up sniffer command output
+- do not overwrite existing git hook file contents #7
 
 ### Removed
 - Nothing

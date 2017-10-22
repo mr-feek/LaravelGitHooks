@@ -2,6 +2,7 @@
 
 namespace Feek\LaravelGitHooks\Commands;
 
+use Feek\LaravelGitHooks\CommandOutputFormatter;
 use PHPUnit\TextUI\Command;
 use PHPUnit\TextUI\TestRunner;
 
@@ -22,13 +23,19 @@ class PhpUnit extends BaseCommand
     protected $description = 'Run your applications tests';
 
     /**
+     * @var CommandOutputFormatter
+     */
+    protected $commandOutputFormatter;
+
+    /**
      * Create a new command instance.
      *
-     * @return void
+     * @param CommandOutputFormatter $commandOutputFormatter
      */
-    public function __construct()
+    public function __construct(CommandOutputFormatter $commandOutputFormatter)
     {
         parent::__construct();
+        $this->commandOutputFormatter = $commandOutputFormatter;
     }
 
     /**
@@ -52,9 +59,9 @@ class PhpUnit extends BaseCommand
         $success = ($result === TestRunner::SUCCESS_EXIT);
 
         if ($success) {
-            $this->info('test suite passed!');
+            $this->info($this->commandOutputFormatter->success('Running PHPUnit'));
         } else {
-            $this->alert('test suite failed!');
+            $this->error($this->commandOutputFormatter->error('Running PHPUnit'));
         }
 
         return $success ? 0 : 1;
