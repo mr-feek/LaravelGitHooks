@@ -74,6 +74,10 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
+        if (!$this->confirm('Should we install the composer dependencies?')) {
+            return;
+        }
+
         $this->programExecutor->system($composer . ' install');
     }
 
@@ -95,6 +99,10 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
+        if (!$this->confirm('Should we install the yarn dependencies?')) {
+            return;
+        }
+      
         $this->programExecutor->system($yarn . ' install');
     }
 
@@ -116,6 +124,10 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
+        if (!$this->confirm('Should we install the npm dependencies?')) {
+            return;
+        }
+      
         $this->programExecutor->system($npm . ' install');
     }
 
