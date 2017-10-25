@@ -2,12 +2,23 @@
 
 namespace Feek\LaravelGitHooks\Commands\CommitHooks;
 
+use Feek\LaravelGitHooks\CommandOutputFormatter;
 use Feek\LaravelGitHooks\Commands\BaseCommand;
 use Illuminate\Support\Str;
-use Symfony\Component\Console\Terminal;
 
 abstract class CommitHookCommand extends BaseCommand
 {
+    /**
+     * @var CommandOutputFormatter
+     */
+    protected $commandOutputFormatter;
+
+    public function __construct(CommandOutputFormatter $commandOutputFormatter)
+    {
+        parent::__construct();
+        $this->commandOutputFormatter = $commandOutputFormatter;
+    }
+
     /**
      * Execute the console command.
      *
@@ -26,6 +37,7 @@ abstract class CommitHookCommand extends BaseCommand
         }
 
         $this->sayHello();
+        $this->line('');
 
         foreach ($commands as $command) {
             // these commands in the config might be the command name + options.
@@ -36,17 +48,22 @@ abstract class CommitHookCommand extends BaseCommand
 
             $formattedArguments = $this->buildArgumentArrayFromArgumentString($commandName, $arguments);
 
-            //$this->line('invoking: ' . $commandName . ' ' . $arguments);
-
             $statusCode = $this->call($commandName, $formattedArguments);
 
             if ($statusCode !== 0) {
-                $this->error('check failed');
+                $hookName = $this->getHookName();
+
+                $this->line('');
+                $this->error($this->commandOutputFormatter->error("$hookName hook commands"));
+                $this->line('');
                 return $statusCode;
             }
         }
 
-        $this->info('all checks passed!');
+        $hookName = $this->getHookName();
+        $this->line('');
+        $this->info($this->commandOutputFormatter->success("$hookName hook commands"));
+        $this->line('');
 
         return 0;
     }
