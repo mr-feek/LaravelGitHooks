@@ -2,6 +2,7 @@
 
 namespace Feek\Tests\Unit;
 
+use Feek\LaravelGitHooks\CommandOutputFormatter;
 use Feek\LaravelGitHooks\Commands\CommitHooks\CommitHookCommand;
 use Mockery;
 use Orchestra\Testbench\TestCase;
@@ -113,10 +114,10 @@ class CommitHookCommandTest extends TestCase
      */
     protected function bootstrapTestCommand()
     {
-        $command = new TestCommand();
+        $command = new TestCommand(new CommandOutputFormatter());
 
         $appMock = Mockery::mock(Application::class)->makePartial();
-        $appMock->shouldReceive('find')->with('fake:command2')->andReturn(new TestCommand2());
+        $appMock->shouldReceive('find')->with('fake:command2')->andReturn(new TestCommand2(new CommandOutputFormatter()));
 
         $command->setApplication($appMock);
         return $command;
@@ -127,10 +128,10 @@ class CommitHookCommandTest extends TestCase
      */
     protected function bootstrapProxyTestCommand()
     {
-        $command = new ProxyTestCommand();
+        $command = new ProxyTestCommand(new CommandOutputFormatter());
 
         $appMock = Mockery::mock(Application::class)->makePartial();
-        $appMock->shouldReceive('find')->with('fake:proxy:command')->andReturn(new ProxyTestCommand());
+        $appMock->shouldReceive('find')->with('fake:proxy:command')->andReturn(new ProxyTestCommand(new CommandOutputFormatter()));
 
         $command->setApplication($appMock);
         return $command;
