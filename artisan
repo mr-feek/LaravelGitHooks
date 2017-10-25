@@ -62,6 +62,7 @@ app()->instance('config', $config = new Repository([
     'hooks.pre-push' => [
         'hooks:phpunit'
     ],
+	'hooks.post-checkout' => ['hooks:install-deps']
 ]));
 
 exit($kernel->handle(new ArgvInput, new ConsoleOutput));
