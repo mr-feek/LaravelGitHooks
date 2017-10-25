@@ -10,7 +10,7 @@
 [![Latest Stable Version](https://poser.pugx.org/mr-feek/laravel-git-hooks/v/stable)](https://packagist.org/packages/mr-feek/laravel-git-hooks) 
 [![Total Downloads](https://poser.pugx.org/mr-feek/laravel-git-hooks/downloads)](https://packagist.org/packages/mr-feek/laravel-git-hooks)
 [![License](https://poser.pugx.org/mr-feek/laravel-git-hooks/license)](https://packagist.org/packages/mr-feek/laravel-git-hooks)
-
+[![Build Status](https://travis-ci.org/mr-feek/LaravelGitHooks.svg?branch=master)](https://travis-ci.org/mr-feek/LaravelGitHooks)
 
 This package provides a way to add custom git hooks to your laravel project. Easily configure any artisan command to be fired throughout the git-hook process. Want to ensure that all tests pass before a bad commit is pushed? Now's your chance!
  
