@@ -44,7 +44,8 @@ class LaravelGitHooksServiceProvider extends ServiceProvider
             ]);
 
             $this->mergeConfigFrom(
-                __DIR__.'/Config/hooks.php', 'hooks'
+                __DIR__.'/Config/hooks.php',
+                'hooks'
             );
         }
     }

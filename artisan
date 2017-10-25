@@ -45,7 +45,7 @@ $app->singleton(
     'Moon\\Artisan\Exceptions\Handler'
 );
 
-app()->instance('path', getcwd());
+app()->instance('path', realpath('./src'));
 app()->instance('basePath', getcwd());
 app()->instance('path.base', getcwd());
 
