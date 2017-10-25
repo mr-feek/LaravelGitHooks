@@ -65,7 +65,7 @@ class InstallHooks extends BaseCommand
 
         foreach ($this->finder as $file) {
             $source = $file->getRealPath();
-            $destination = $destPath.$file->getRelativePathname();
+            $destination = $destPath.$file->getRelativePath().$file->getBasename('.sh');
 
             $sourceContent = PHP_EOL.$this->delimiterStart().PHP_EOL.$file->getContents().PHP_EOL.$this->delimiterEnd().PHP_EOL;
             $destinationContent = $this->filesystem->exists($destination) ? $this->filesystem->get($destination) : '';
