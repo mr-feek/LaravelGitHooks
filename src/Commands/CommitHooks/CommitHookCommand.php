@@ -25,6 +25,8 @@ abstract class CommitHookCommand extends BaseCommand
             return 0;
         }
 
+        $this->sayHello();
+
         foreach ($commands as $command) {
             // these commands in the config might be the command name + options.
             $parts = explode(' ', $command, 2);
