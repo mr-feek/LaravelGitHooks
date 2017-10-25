@@ -18,10 +18,10 @@ class InstallHooksTest extends TestCase
         $mock = $this->bootstrapFilesystemMock();
         $mock->shouldReceive('exists')->andReturn(true);
         $mock->shouldReceive('get')->with(Mockery::anyOf(
-            base_path().'/.git/hooks/post-checkout.sh',
-            base_path().'/.git/hooks/pre-commit.sh',
-            base_path().'/.git/hooks/pre-push.sh',
-            base_path().'/.git/hooks/prepare-commit-msg.sh'))->andReturn('user defined git hook');
+            base_path().'/.git/hooks/post-checkout',
+            base_path().'/.git/hooks/pre-commit',
+            base_path().'/.git/hooks/pre-push',
+            base_path().'/.git/hooks/prepare-commit-msg'))->andReturn('user defined git hook');
         $mock->shouldReceive('put')->withArgs([
             Mockery::any(),
             Mockery::on(function ($value) {
@@ -48,10 +48,10 @@ class InstallHooksTest extends TestCase
         $mock = $this->bootstrapFilesystemMock();
         $mock->shouldReceive('exists')->andReturn(false);
         $mock->shouldReceive('get')->with(Mockery::anyOf(
-            base_path().'/.git/hooks/post-checkout.sh',
-            base_path().'/.git/hooks/pre-commit.sh',
-            base_path().'/.git/hooks/pre-push.sh',
-            base_path().'/.git/hooks/prepare-commit-msg.sh'))->andReturn('');
+            base_path().'/.git/hooks/post-checkout',
+            base_path().'/.git/hooks/pre-commit',
+            base_path().'/.git/hooks/pre-push',
+            base_path().'/.git/hooks/prepare-commit-msg'))->andReturn('');
         $mock->shouldReceive('put')->withArgs([
             Mockery::any(),
             Mockery::on(function ($value) {
@@ -70,10 +70,10 @@ class InstallHooksTest extends TestCase
         $mock->shouldReceive('exists')->andReturn();
         $mock->shouldReceive('get')
              ->with(Mockery::anyOf(
-                 base_path().'/.git/hooks/post-checkout.sh',
-                 base_path().'/.git/hooks/pre-commit.sh',
-                 base_path().'/.git/hooks/pre-push.sh',
-                 base_path().'/.git/hooks/prepare-commit-msg.sh'))
+                 base_path().'/.git/hooks/post-checkout',
+                 base_path().'/.git/hooks/pre-commit',
+                 base_path().'/.git/hooks/pre-push',
+                 base_path().'/.git/hooks/prepare-commit-msg'))
              ->andReturn($this->delimiterStart().'user defined git hook'.$this->delimiterEnd());
         $mock->shouldReceive('put')->withArgs([
             Mockery::any(),
