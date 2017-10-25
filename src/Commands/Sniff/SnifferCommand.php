@@ -79,7 +79,8 @@ abstract class SnifferCommand extends BaseCommand
             $filesToCheck = implode($filesToCheck, ' ');
 
             if (!$filesToCheck) {
-                $this->warn('did not find any files to sniff');
+                $this->warn($this->commandOutputFormatter->warn($this->getBaseMessage()));
+                $this->warn('No files found to sniff.');
                 return 0;
             }
         }
