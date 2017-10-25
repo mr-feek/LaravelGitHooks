@@ -45,8 +45,6 @@ class PhpUnit extends BaseCommand
      */
     public function handle()
     {
-        $this->line('running test suite...');
-
         ob_start();
 
         $result = (new Command())->run([
