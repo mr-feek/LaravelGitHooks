@@ -14,5 +14,4 @@ trait GitHookDelimiter
     {
         return '# LARAVEL GIT HOOKS END #';
     }
-
 }

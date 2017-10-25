@@ -21,7 +21,7 @@ class PrepareCommitMsg extends CommitHookCommand
     /**
      * @return string
      */
-    function getConfigKey()
+    protected function getConfigKey()
     {
         return 'hooks.prepare-commit-msg';
     }

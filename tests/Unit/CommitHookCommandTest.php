@@ -144,7 +144,7 @@ class TestCommand extends CommitHookCommand
     /**
      * @return string
      */
-    function getConfigKey()
+    protected function getConfigKey()
     {
         return 'N/A';
     }
@@ -157,7 +157,7 @@ class TestCommand2 extends CommitHookCommand
     /**
      * @return string
      */
-    function getConfigKey()
+    protected function getConfigKey()
     {
         return 'N/A';
     }
@@ -170,7 +170,7 @@ class ProxyTestCommand extends CommitHookCommand
     /**
      * @return string
      */
-    function getConfigKey()
+    protected function getConfigKey()
     {
         return 'N/A';
     }
