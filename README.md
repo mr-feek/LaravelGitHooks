@@ -64,11 +64,13 @@ This package ships with several handy artisan commands which work nicely as git 
 - phpunit
 - phpcs
 - phpcbf
+- phpstan 
+    - If you are using this command, you will have a much better experience by creating a [custom phpstan.neon file](https://github.com/Weebly/phpstan-laravel)
 - install dependencies (composer, yarn, npm)
 - eslint
 
 ### Sniffer Commands
-The `PHPCS`, `PHPCBF`, and `ESLINT` commands all allow you to pass arguments to the underlying process being executed. You
+The `PHPCS`, `PHPCBF`, `PHPSTAN`, and `ESLINT` commands all allow you to pass arguments to the underlying process being executed. You
 can utilize this via the `--proxiedArguments` flag. In the code examples above, the following phpcs command will be executed: 
 `phpcs -p -n --standard=PSR2`
 
