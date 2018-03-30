@@ -18,6 +18,12 @@ class Phpstan extends PHPCodeSnifferCommand
      */
     protected $description = 'Run phpstan on the given files. Refer to https://github.com/Weebly/phpstan-laravel';
 
+    protected function onCommandExec()
+    {
+        $this->line('');
+        $this->line('');
+    }
+
     /**
      * @return string
      */

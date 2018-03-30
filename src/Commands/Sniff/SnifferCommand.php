@@ -95,6 +95,8 @@ abstract class SnifferCommand extends BaseCommand
             $statusCode
         );
 
+        $this->onCommandExec();
+
         if ($statusCode !== 0) {
             foreach ($output as $line) {
                 $this->line($line);
@@ -119,5 +121,10 @@ abstract class SnifferCommand extends BaseCommand
     {
         $name = $this->getCommandName();
         return "Analyzing code with $name";
+    }
+
+    protected function onCommandExec()
+    {
+        // noop by default
     }
 }
