@@ -3,8 +3,7 @@
 namespace Feek\LaravelGitHooks\Commands;
 
 use Feek\LaravelGitHooks\CommandOutputFormatter;
-use PHPUnit\TextUI\Command;
-use PHPUnit\TextUI\TestRunner;
+use Feek\LaravelGitHooks\ProgramExecutor;
 
 class PhpUnit extends BaseCommand
 {
@@ -28,14 +27,20 @@ class PhpUnit extends BaseCommand
     protected $commandOutputFormatter;
 
     /**
+     * @var ProgramExecutor
+     */
+    protected $programExecutor;
+
+    /**
      * Create a new command instance.
      *
      * @param CommandOutputFormatter $commandOutputFormatter
      */
-    public function __construct(CommandOutputFormatter $commandOutputFormatter)
+    public function __construct(ProgramExecutor $programExecutor, CommandOutputFormatter $commandOutputFormatter)
     {
         parent::__construct();
         $this->commandOutputFormatter = $commandOutputFormatter;
+        $this->programExecutor = $programExecutor;
     }
 
     /**
@@ -45,23 +50,20 @@ class PhpUnit extends BaseCommand
      */
     public function handle()
     {
-        ob_start();
+        $arguments = $this->option('proxiedArguments');
 
-        $result = (new Command())->run([
-            '--disallow-test-output',
-            '--stop-on-failure'
-        ], false);
+        $this->programExecutor->exec("./vendor/bin/phpunit $arguments", $output, $statusCode);
 
-        ob_end_clean();
+        if ($statusCode !== 0) {
+            foreach ($output as $line) {
+                $this->line($line);
+            }
 
-        $success = ($result === TestRunner::SUCCESS_EXIT);
-
-        if ($success) {
-            $this->info($this->commandOutputFormatter->success('Running PHPUnit'));
-        } else {
             $this->error($this->commandOutputFormatter->error('Running PHPUnit'));
+        } else {
+            $this->info($this->commandOutputFormatter->success('Running PHPUnit'));
         }
 
-        return $success ? 0 : 1;
+        return $statusCode;
     }
 }

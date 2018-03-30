@@ -13,7 +13,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Nothing
 
 ### Fixed
-- Nothing
+- Proxy Phpunit arguments #31
 
 ### Removed
 - Nothing
