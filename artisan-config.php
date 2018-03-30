@@ -9,6 +9,7 @@ return [
         \Feek\LaravelGitHooks\Commands\CommitHooks\PostCheckout::class,
         \Feek\LaravelGitHooks\Commands\Sniff\Phpcs::class,
         \Feek\LaravelGitHooks\Commands\Sniff\Phpcbf::class,
+        \Feek\LaravelGitHooks\Commands\Sniff\Phpstan::class,
         \Feek\LaravelGitHooks\Commands\PhpUnit::class,
         \Feek\LaravelGitHooks\Commands\InstallDependencies::class,
     ],

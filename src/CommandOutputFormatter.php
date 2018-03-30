@@ -5,7 +5,7 @@ namespace Feek\LaravelGitHooks;
 class CommandOutputFormatter
 {
     /**
-     * @param $message
+     * @param string $message
      *
      * @return string
      */
@@ -15,7 +15,7 @@ class CommandOutputFormatter
     }
 
     /**
-     * @param $message
+     * @param string $message
      *
      * @return string
      */
@@ -25,7 +25,7 @@ class CommandOutputFormatter
     }
 
     /**
-     * @param $message
+     * @param string $message
      *
      * @return string
      */
@@ -35,7 +35,7 @@ class CommandOutputFormatter
     }
 
     /**
-     * @param $message
+     * @param string $message
      *
      * @return string
      */

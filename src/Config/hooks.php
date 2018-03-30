@@ -23,6 +23,7 @@ return [
     */
     'pre-commit' => [
         'hooks:phpcs --diff --proxiedArguments="-p -n --standard=PSR2"',
+        'hooks:phpstan --diff --proxiedArguments="-c phpstan.neon -l 0"',
         'hooks:eslint --diff --proxiedArguments="--fix --quiet"',
     ],
 

@@ -12,6 +12,7 @@ use Feek\LaravelGitHooks\Commands\PhpUnit;
 use Feek\LaravelGitHooks\Commands\Sniff\ESLint;
 use Feek\LaravelGitHooks\Commands\Sniff\Phpcbf;
 use Feek\LaravelGitHooks\Commands\Sniff\Phpcs;
+use Feek\LaravelGitHooks\Commands\Sniff\Phpstan;
 use Feek\LaravelGitHooks\Commands\UninstallHooks;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +31,7 @@ class LaravelGitHooksServiceProvider extends ServiceProvider
                 ESLint::class,
                 Phpcs::class,
                 Phpcbf::class,
+                Phpstan::class,
                 InstallHooks::class,
                 UninstallHooks::class,
                 PhpUnit::class,
