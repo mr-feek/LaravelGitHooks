@@ -15,7 +15,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Nothing
 
 ### Removed
-- Nothing
+- `weebly/phpstan-laravel` hard requirement.
 
 ### Security
 - Nothing
