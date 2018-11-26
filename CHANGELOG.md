@@ -7,6 +7,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Added
 - `commit-msg` hook
+- Semantic commit messaging hook. [Inspiration](https://seesparkbox.com/foundry/semantic_commit_messages)
 
 ### Deprecated
 - Nothing

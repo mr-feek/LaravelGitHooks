@@ -10,6 +10,7 @@ use Feek\LaravelGitHooks\Commands\CommitHooks\PrePush;
 use Feek\LaravelGitHooks\Commands\CommitHooks\PrepareCommitMsg;
 use Feek\LaravelGitHooks\Commands\CommitHooks\PostCheckout;
 use Feek\LaravelGitHooks\Commands\PhpUnit;
+use Feek\LaravelGitHooks\Commands\SemanticCommitMessages;
 use Feek\LaravelGitHooks\Commands\Sniff\ESLint;
 use Feek\LaravelGitHooks\Commands\Sniff\Phpcbf;
 use Feek\LaravelGitHooks\Commands\Sniff\Phpcs;
@@ -37,6 +38,7 @@ class LaravelGitHooksServiceProvider extends ServiceProvider
                 InstallHooks::class,
                 UninstallHooks::class,
                 PhpUnit::class,
+                SemanticCommitMessages::class,
 
                 // hooks
                 CommitMsg::class,

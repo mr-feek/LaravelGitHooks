@@ -13,5 +13,6 @@ return [
         \Feek\LaravelGitHooks\Commands\Sniff\Phpstan::class,
         \Feek\LaravelGitHooks\Commands\PhpUnit::class,
         \Feek\LaravelGitHooks\Commands\InstallDependencies::class,
+        \Feek\LaravelGitHooks\Commands\SemanticCommitMessages::class,
     ],
 ];
