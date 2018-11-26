@@ -138,7 +138,9 @@ abstract class CommitHookCommand extends BaseCommand
 
     protected function getHookName()
     {
-        return explode(':', $this->signature)[1];
+        $hookNameWithArguments = explode(':', $this->signature)[1];
+
+        return explode(' ', $hookNameWithArguments)[0];
     }
 
     protected function sayHello()
