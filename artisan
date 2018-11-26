@@ -57,6 +57,9 @@ $kernel = new Moon\Artisan\Console\Kernel(
 app()->instance('config', $config = new Repository([
     'hooks.enabled' => 1,
     'hooks.commit-msg' => [
+
+    ],
+    'hooks.prepare-commit-msg' => [
         'hooks:semantic-commits'
     ],
     'hooks.pre-commit' => [

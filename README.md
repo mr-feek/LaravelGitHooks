@@ -57,7 +57,7 @@ return [
         'hooks:install-deps'
     ],
     'prepare-commit-msg' => [
-        //
+        'hooks:semantic-commits',
     ],
 ];
 ```
