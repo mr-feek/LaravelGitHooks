@@ -56,6 +56,9 @@ $kernel = new Moon\Artisan\Console\Kernel(
 
 app()->instance('config', $config = new Repository([
     'hooks.enabled' => 1,
+    'hooks.commit-msg' => [
+
+    ],
     'hooks.pre-commit' => [
         'hooks:phpcs --diff --proxiedArguments="-p -n --standard=PSR2"
     '],
