@@ -39,6 +39,16 @@ class CommandOutputFormatter
      *
      * @return string
      */
+    public function info($message)
+    {
+        return $this->pad($message) . ' [INFO]';
+    }
+
+    /**
+     * @param string $message
+     *
+     * @return string
+     */
     protected function pad($message)
     {
         return str_pad($message, 50, '.');

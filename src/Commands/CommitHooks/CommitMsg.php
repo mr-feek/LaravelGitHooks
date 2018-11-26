@@ -36,10 +36,8 @@ class CommitMsg extends CommitHookCommand
         $arguments = parent::buildArgumentArrayFromArgumentString($commandName, $arguments);
 
         // the commit message file contents will be put onto the top of this stack for the underlying command to access
-        array_unshift($arguments, [
+        return $arguments + [
             'file' => $this->argument('file'),
-        ]);
-
-        return $arguments;
+        ];
     }
 }

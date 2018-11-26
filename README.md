@@ -71,6 +71,7 @@ This package ships with several handy artisan commands which work nicely as git 
     - If you are using this command, you will have a much better experience by creating a [custom phpstan.neon file](https://github.com/Weebly/phpstan-laravel)
 - install dependencies (composer, yarn, npm)
 - eslint
+- semantic commit messages
 
 ### Sniffer Commands
 The `PHPCS`, `PHPCBF`, `PHPSTAN`, and `ESLINT` commands all allow you to pass arguments to the underlying process being executed. You
