@@ -36,7 +36,7 @@ class PrepareCommitMsg extends CommitHookCommand
 
         // the commit message file contents will be put onto the top of this stack for the underlying command to access
         return $arguments + [
-                'file' => $this->argument('file'),
-            ];
+            'file' => $this->argument('file'),
+        ];
     }
 }
