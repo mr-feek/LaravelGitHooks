@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class SemanticCommitMessages extends BaseCommand
 {
-    const COMMIT_TYPES_ALLOWED = ['chore', 'docs', 'feat', 'fix', 'refactor', 'style', 'test'];
+    const COMMIT_TYPES_ALLOWED = ['alter', 'chore', 'docs', 'feature', 'fix', 'refactor', 'style', 'test'];
 
     /**
      * @inheritdoc
