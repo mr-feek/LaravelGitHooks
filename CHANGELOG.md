@@ -13,7 +13,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Nothing
 
 ### Fixed
-- Nothing
+- Pass the commit message contents to the `prepare-commit-msg` hooks
 
 ### Removed
 - `weebly/phpstan-laravel` hard requirement.

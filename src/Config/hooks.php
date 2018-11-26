@@ -34,7 +34,9 @@ return [
     |
     | Here is where you should list each artisan command that you want run
     | while preparing the commit msg. If any of these commands fail, then
-    | the commit will be aborted.
+    | the commit will be aborted. The commit message file location will
+    | automatically be passed as the first argument to all commands
+    | listed here.
     */
     'prepare-commit-msg' => [
         //
@@ -59,7 +61,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here is where you should list each artisan command that you want run
-    | after git checkout (also invoked on git clone). This hook cannot affect 
+    | after git checkout (also invoked on git clone). This hook cannot affect
     | the outcome of git checkout. Add as many or few as you want.
     */
     'post-checkout' => [
