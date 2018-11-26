@@ -16,6 +16,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Removed
 - `weebly/phpstan-laravel` hard requirement.
+- support for php 5.6
 
 ### Security
 - Nothing
