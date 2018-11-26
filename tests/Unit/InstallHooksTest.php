@@ -21,6 +21,7 @@ class InstallHooksTest extends TestCase
             base_path().'/.git/hooks/post-checkout',
             base_path().'/.git/hooks/pre-commit',
             base_path().'/.git/hooks/pre-push',
+            base_path().'/.git/hooks/commit-msg',
             base_path().'/.git/hooks/prepare-commit-msg'))->andReturn('user defined git hook');
         $mock->shouldReceive('put')->withArgs([
             Mockery::any(),
