@@ -9,7 +9,7 @@ class PrepareCommitMsg extends CommitHookCommand
      *
      * @var string
      */
-    protected $signature = 'hooks:prepare-commit-msg';
+    protected $signature = 'hooks:prepare-commit-msg {file : the file containing the contents of the proposed commit message} {source : the source of the message}';
 
     /**
      * The console command description.
@@ -24,5 +24,19 @@ class PrepareCommitMsg extends CommitHookCommand
     protected function getConfigKey()
     {
         return 'hooks.prepare-commit-msg';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function buildArgumentArrayFromArgumentString($commandName, $arguments = '')
+    {
+        // the explicit arguments passed to be passed to the underlying command to be invoked
+        $arguments = parent::buildArgumentArrayFromArgumentString($commandName, $arguments);
+
+        // the commit message file contents will be put onto the top of this stack for the underlying command to access
+        return $arguments + [
+                'file' => $this->argument('file'),
+            ];
     }
 }
