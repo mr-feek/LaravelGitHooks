@@ -9,8 +9,7 @@ class CommitMsg extends CommitHookCommand
      *
      * @var string
      */
-    protected $signature = 'hooks:commit-msg
-                            {file : the file containing the contents of the proposed commit message}';
+    protected $signature = 'hooks:commit-msg {file : the file containing the contents of the proposed commit message}';
 
     /**
      * The console command description.
