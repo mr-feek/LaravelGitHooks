@@ -14,6 +14,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Commands to run during commit-msg
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you should list each artisan command that you want run
+    | during the commit message hook. If any of these commands fail, then
+    | the commit will be aborted. The commit message file location will
+    | automatically be passed as the first argument to all commands
+    | listed here.
+    */
+    'commit-msg' => [
+       //
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Commands to run pre-commit
     |--------------------------------------------------------------------------
     |
