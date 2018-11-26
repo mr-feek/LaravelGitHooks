@@ -2,6 +2,7 @@
 
 namespace Feek\LaravelGitHooks;
 
+use Feek\LaravelGitHooks\Commands\CommitHooks\CommitMsg;
 use Feek\LaravelGitHooks\Commands\InstallDependencies;
 use Feek\LaravelGitHooks\Commands\InstallHooks;
 use Feek\LaravelGitHooks\Commands\CommitHooks\PreCommit;
@@ -27,6 +28,7 @@ class LaravelGitHooksServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                // workers
                 InstallDependencies::class,
                 ESLint::class,
                 Phpcs::class,
@@ -35,10 +37,13 @@ class LaravelGitHooksServiceProvider extends ServiceProvider
                 InstallHooks::class,
                 UninstallHooks::class,
                 PhpUnit::class,
+
+                // hooks
+                CommitMsg::class,
                 PreCommit::class,
                 PrePush::class,
                 PrepareCommitMsg::class,
-                PostCheckout::class
+                PostCheckout::class,
             ]);
 
             $this->publishes([

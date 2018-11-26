@@ -43,6 +43,9 @@ Edit your laravel project's `composer.json` so that these hooks are installed fo
 ```php
 <?php
 return [
+    'commit-msg' => [
+        //
+    ],
     'pre-commit' => [
         'hooks:phpcs --diff --proxiedArguments="-p -n --standard=PSR2"',
         'hooks:eslint --diff --proxiedArguments="--fix --quiet"',

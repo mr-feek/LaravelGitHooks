@@ -3,6 +3,7 @@
 return [
     'commands' => [
         \Feek\LaravelGitHooks\Commands\InstallHooks::class,
+        \Feek\LaravelGitHooks\Commands\CommitHooks\CommitMsg::class,
         \Feek\LaravelGitHooks\Commands\CommitHooks\PreCommit::class,
         \Feek\LaravelGitHooks\Commands\CommitHooks\PrepareCommitMsg::class,
         \Feek\LaravelGitHooks\Commands\CommitHooks\PrePush::class,
