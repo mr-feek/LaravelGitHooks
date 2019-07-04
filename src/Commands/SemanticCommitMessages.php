@@ -48,7 +48,10 @@ class SemanticCommitMessages extends BaseCommand
         $commitMessageFile = $this->argument('file');
         $contents = $this->filesystem->get($commitMessageFile);
 
-        // check if the commit message is already considered semantic
+        // allow default merge commits
+        if (Str::startsWith($contents, "Merge")) {
+            return 0;
+        }
 
         foreach (self::COMMIT_TYPES_ALLOWED as $type) {
             if (Str::startsWith($contents, "$type: ")) {
