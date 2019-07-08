@@ -15,6 +15,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ### Fixed
 - Pass the commit message contents to the `prepare-commit-msg` hooks
 - #38 SemanticCommitMessages does not allow merge commits
+- #33 InstallDependencies no longer attempts to guess if files changed
 
 ### Removed
 - `weebly/phpstan-laravel` hard requirement.
