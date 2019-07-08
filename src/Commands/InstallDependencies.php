@@ -69,11 +69,6 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
-        if (!$this->isFileChanged('composer.lock')) {
-            $this->info('no composer changes detected');
-            return;
-        }
-
         if (!$this->confirm('Should we install the composer dependencies?')) {
             return;
         }
@@ -91,11 +86,6 @@ class InstallDependencies extends BaseCommand
 
         if (! $yarn) {
             $this->warn('yarn not found');
-            return;
-        }
-
-        if (!$this->isFileChanged('yarn.lock')) {
-            $this->info('no yarn changes detected');
             return;
         }
 
@@ -119,28 +109,10 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
-        if (!$this->isFileChanged('package-lock.json')) {
-            $this->info('no npm changes detected');
-            return;
-        }
-
         if (!$this->confirm('Should we install the npm dependencies?')) {
             return;
         }
       
         $this->programExecutor->system($npm . ' install');
-    }
-
-    /**
-     * @param string $file
-     *
-     * @return bool
-     */
-    protected function isFileChanged($file)
-    {
-        // this command is probably only ever going to be run just after checking out another branch, so just assume
-        // to check in "git diff"
-        $this->programExecutor->exec("git diff --name-only --diff-filter=M HEAD -- $file", $output);
-        return count($output) > 0;
     }
 }
