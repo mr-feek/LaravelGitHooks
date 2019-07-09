@@ -6,7 +6,6 @@ use Feek\LaravelGitHooks\LaravelGitHooksServiceProvider;
 use Feek\LaravelGitHooks\Traits\GitHookDelimiter;
 use Illuminate\Filesystem\Filesystem;
 use Mockery;
-use Mockery\MockInterface;
 use Orchestra\Testbench\TestCase;
 
 class InstallHooksTest extends TestCase
@@ -37,7 +36,7 @@ class InstallHooksTest extends TestCase
     }
 
     /**
-     * @return \Mockery\MockInterface|Filesystem
+     * @return \Mockery\MockInterface|\Illuminate\Filesystem\Filesystem
      */
     private function bootstrapFilesystemMock()
     {
