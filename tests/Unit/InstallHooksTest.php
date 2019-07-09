@@ -13,7 +13,7 @@ class InstallHooksTest extends TestCase
     use GitHookDelimiter;
 
     /** @test */
-    public function it_keeps_the_user_defined_tests(): void
+    public function it_keeps_the_user_defined_hooks(): void
     {
         $mock = $this->bootstrapFilesystemMock();
         $mock->shouldReceive('exists')->andReturn(true);
@@ -81,11 +81,11 @@ class InstallHooksTest extends TestCase
                  base_path() . '/.git/hooks/pre-push',
                  base_path() . '/.git/hooks/prepare-commit-msg'
              ))
-             ->andReturn($this->delimiterStart() . 'user defined git hook' . $this->delimiterEnd());
+             ->andReturn($this->delimiterStart() . 'this hook definition should be replaced' . $this->delimiterEnd());
         $mock->shouldReceive('put')->withArgs([
             Mockery::any(),
             Mockery::on(function ($value) {
-                return ! str_contains($value, 'user defined git hook');
+                return ! str_contains($value, 'this hook definition should be replaced');
             }),
         ]);
         $mock->shouldReceive('chmod');

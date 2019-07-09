@@ -67,17 +67,23 @@ class InstallHooks extends BaseCommand
             $source = $file->getRealPath();
             $destination = $destPath . $file->getRelativePath() . $file->getBasename('.sh');
 
-            $sourceContent = PHP_EOL . $this->delimiterStart() . PHP_EOL . $file->getContents() . PHP_EOL . $this->delimiterEnd() . PHP_EOL;
-            $destinationContent = $this->filesystem->exists($destination) ? $this->filesystem->get($destination) : '';
+            $hookDefinition = PHP_EOL . $this->delimiterStart() . PHP_EOL . $file->getContents() . PHP_EOL . $this->delimiterEnd() . PHP_EOL;
+            // @see https://www.php.net/manual/en/function.preg-replace.php#103985 for the need to escape `$`
+            $hookDefinition = preg_replace('/\$(\d)/', '\\\$$1', $hookDefinition);
 
-            if (str_contains($destinationContent, $this->delimiterStart())) {
-                $search = '/' . $this->delimiterStart() . '[\s\S]+?' . $this->delimiterEnd() . '/m';
-                $destinationContent = preg_replace($search, $sourceContent, $destinationContent);
+
+            $previousHookDefinition = $this->filesystem->exists($destination) ? $this->filesystem->get($destination) : '';
+
+            // check if this package has been installed before. If so, replace the contents without overwriting
+            // anything that may have been added by the user
+            $search = '/' . preg_quote($this->delimiterStart()) . '[\s\S]+?' . preg_quote($this->delimiterEnd()) . '/m';
+            if (preg_match($search, $previousHookDefinition)) {
+                $contentsToWrite = preg_replace($search, $hookDefinition, $previousHookDefinition);
             } else {
-                $destinationContent .= $sourceContent;
+                $contentsToWrite = $previousHookDefinition . $hookDefinition;
             }
 
-            $this->filesystem->put($destination, $destinationContent);
+            $this->filesystem->put($destination, $contentsToWrite);
             $this->filesystem->chmod($destination, 0775);
 
             $from = str_replace(base_path(), '', realpath($source));
