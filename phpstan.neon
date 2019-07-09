@@ -1,8 +1,9 @@
 includes:
     - vendor/phpstan/phpstan-mockery/extension.neon
 parameters:
-    level: 1
+    level: 2
     paths:
         - src
         - tests
     ignoreErrors:
+        - '#Method Mockery\\MockInterface\:\:shouldReceive\(\) invoked with 1 parameter, 0 required.#'
