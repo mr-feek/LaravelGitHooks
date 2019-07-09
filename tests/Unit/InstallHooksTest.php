@@ -36,7 +36,10 @@ class InstallHooksTest extends TestCase
         $this->artisan('hooks:install');
     }
 
-    private function bootstrapFilesystemMock(): MockInterface
+    /**
+     * @return \Mockery\MockInterface|Filesystem
+     */
+    private function bootstrapFilesystemMock()
     {
         $mock = Mockery::mock(Filesystem::class);
 

@@ -8,5 +8,5 @@ before_script:
 
 script:
   - vendor/bin/phpcs src/ tests/ -n -p -s
-  - vendor/bin/phpstan analyse src tests
+  - vendor/bin/phpstan analyse
   - vendor/bin/phpunit
