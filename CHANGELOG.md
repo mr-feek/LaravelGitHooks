@@ -16,6 +16,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Pass the commit message contents to the `prepare-commit-msg` hooks
 - #38 SemanticCommitMessages does not allow merge commits
 - #33 InstallDependencies no longer attempts to guess if files changed
+- Lots of lints across the codebase
 
 ### Removed
 - `weebly/phpstan-laravel` hard requirement.
@@ -23,6 +24,9 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Security
 - Nothing
+
+### BREAKING CHANGES
+- this package now requires ^php7.3
 
 ## [v0.5.1]
 
