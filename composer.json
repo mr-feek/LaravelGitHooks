@@ -13,6 +13,7 @@
     ],
     "homepage": "https://github.com/mr-feek/LaravelGitHooks",
     "license": "MIT",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Fiachra McDermott",
@@ -22,7 +23,7 @@
         }
     ],
     "require": {
-        "php": "~7.0",
+        "php": "~7.3",
         "illuminate/console": "~5.1",
         "illuminate/support": "~5.1",
         "phpunit/phpunit": ">=5.4.3",
@@ -32,7 +33,8 @@
     "require-dev": {
         "mockery/mockery": "^0.9.9",
         "moon/artisan": "^v1.9",
-        "orchestra/testbench": "~3.0"
+        "orchestra/testbench": "~3.0",
+        "poker-vault/phpcs-standard": "dev-master"
     },
     "autoload": {
         "psr-4": {

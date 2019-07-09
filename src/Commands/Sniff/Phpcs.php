@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks\Commands\Sniff;
 
@@ -18,10 +18,7 @@ class Phpcs extends PHPCodeSnifferCommand
      */
     protected $description = 'Run phpcs on the given files';
 
-    /**
-     * @return string
-     */
-    protected function getCodeSnifferExecutable()
+    protected function getCodeSnifferExecutable(): string
     {
         return base_path() . '/vendor/bin/phpcs';
     }

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks\Commands;
 
@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class SemanticCommitMessages extends BaseCommand
 {
-    const COMMIT_TYPES_ALLOWED = ['alter', 'chore', 'docs', 'feature', 'fix', 'refactor', 'style', 'test'];
+    private const COMMIT_TYPES_ALLOWED = ['alter', 'chore', 'docs', 'feature', 'fix', 'refactor', 'style', 'test'];
 
     /**
      * @inheritdoc
@@ -49,7 +49,7 @@ class SemanticCommitMessages extends BaseCommand
         $contents = $this->filesystem->get($commitMessageFile);
 
         // allow default merge commits
-        if (Str::startsWith($contents, "Merge")) {
+        if (Str::startsWith($contents, 'Merge')) {
             return 0;
         }
 
@@ -59,8 +59,7 @@ class SemanticCommitMessages extends BaseCommand
             }
         }
 
-        $this->error($this->outputFormatter->error('The proposed commit message is not considered semantic. Please prepend your commit message with one of the following: ' .
-            implode(': ', self::COMMIT_TYPES_ALLOWED)));
+        $this->error($this->outputFormatter->error('The proposed commit message is not considered semantic. Please prepend your commit message with one of the following: ' . implode(': ', self::COMMIT_TYPES_ALLOWED)));
 
         return 1;
     }

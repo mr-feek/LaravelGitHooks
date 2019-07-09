@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks\Commands\Sniff;
 
@@ -18,16 +18,13 @@ class Phpstan extends PHPCodeSnifferCommand
      */
     protected $description = 'Run phpstan on the given files. Refer to https://github.com/Weebly/phpstan-laravel';
 
-    protected function onCommandExec()
+    protected function onCommandExec(): void
     {
         $this->line('');
         $this->line('');
     }
 
-    /**
-     * @return string
-     */
-    protected function getCodeSnifferExecutable()
+    protected function getCodeSnifferExecutable(): string
     {
         return base_path() . '/vendor/bin/phpstan analyze';
     }

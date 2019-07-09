@@ -1,55 +1,30 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks;
 
 class CommandOutputFormatter
 {
-    /**
-     * @param string $message
-     *
-     * @return string
-     */
-    public function success($message)
+    public function success(string $message): string
     {
         return $this->pad($message) . ' [PASSED]';
     }
 
-    /**
-     * @param string $message
-     *
-     * @return string
-     */
-    public function error($message)
+    public function error(string $message): string
     {
         return $this->pad($message) . ' [ERROR]';
     }
 
-    /**
-     * @param string $message
-     *
-     * @return string
-     */
-    public function warn($message)
+    public function warn(string $message): string
     {
         return $this->pad($message) . ' [WARNING]';
     }
 
-    /**
-     * @param string $message
-     *
-     * @return string
-     */
-    public function info($message)
+    public function info(string $message): string
     {
         return $this->pad($message) . ' [INFO]';
     }
 
-    /**
-     * @param string $message
-     *
-     * @return string
-     */
-    protected function pad($message)
+    protected function pad(string $message): string
     {
         return str_pad($message, 50, '.');
     }

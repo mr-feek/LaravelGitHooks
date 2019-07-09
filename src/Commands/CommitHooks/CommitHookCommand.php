@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks\Commands\CommitHooks;
 
@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 abstract class CommitHookCommand extends BaseCommand
 {
     /**
-     * @var CommandOutputFormatter
+     * @var \Feek\LaravelGitHooks\CommandOutputFormatter
      */
     protected $commandOutputFormatter;
 
@@ -68,26 +68,19 @@ abstract class CommitHookCommand extends BaseCommand
         return 0;
     }
 
-    /**
-     * @return string
-     */
-    abstract protected function getConfigKey();
+    abstract protected function getConfigKey(): string;
 
     /**
      * Unfortunately calling artisan commands from within other artisan commands is not as simple as passing in a
      * string of arguments. Instead, they need to be formatted into an array, with extra care given for arguments
      * vs options, etc.
      *
-     * @param string $commandName
-     * @param string[] $arguments
-     *  ['27', '--diff', '--lines=45'']
-     *
      * @return array [];
      *  [
      *      ['--flag' => true]
      *  ]
      */
-    public function buildArgumentArrayFromArgumentString($commandName, $arguments = '')
+    public function buildArgumentArrayFromArgumentString(string $commandName, string $arguments = ''): array
     {
         if (!$arguments) {
             return [];
@@ -136,14 +129,14 @@ abstract class CommitHookCommand extends BaseCommand
         return $formattedArguments;
     }
 
-    protected function getHookName()
+    protected function getHookName(): string
     {
         $hookNameWithArguments = explode(':', $this->signature)[1];
 
         return explode(' ', $hookNameWithArguments)[0];
     }
 
-    protected function sayHello()
+    protected function sayHello(): void
     {
         $name = $this->getHookName();
         $this->line("<options=bold>Running $name hooks</>");

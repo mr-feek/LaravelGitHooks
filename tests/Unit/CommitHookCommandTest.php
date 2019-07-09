@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\Tests\Unit;
 
@@ -14,7 +14,7 @@ class CommitHookCommandTest extends TestCase
      * @test
      * @expectedException \InvalidArgumentException
      */
-    public function it_throws_exception_if_invalid_arguments_supplied()
+    public function it_throws_exception_if_invalid_arguments_supplied(): void
     {
         $command = $this->bootstrapTestCommand();
 
@@ -24,35 +24,35 @@ class CommitHookCommandTest extends TestCase
     /**
      * @test
      */
-    public function it_formats_options()
+    public function it_formats_options(): void
     {
         $command = $this->bootstrapTestCommand();
 
         $formatted = $command->buildArgumentArrayFromArgumentString('fake:command2', '--drinkAll');
 
         $this->assertSame([
-            '--drinkAll' => true
+            '--drinkAll' => true,,
         ], $formatted);
     }
 
     /**
      * @test
      */
-    public function it_formats_required_arguments()
+    public function it_formats_required_arguments(): void
     {
         $command = $this->bootstrapTestCommand();
 
         $formatted = $command->buildArgumentArrayFromArgumentString('fake:command2', '27');
 
         $this->assertSame([
-            'budLites' => '27'
+            'budLites' => '27',,
         ], $formatted);
     }
 
     /**
      * @test
      */
-    public function it_formats_optional_arguments()
+    public function it_formats_optional_arguments(): void
     {
         $command = $this->bootstrapTestCommand();
 
@@ -60,14 +60,14 @@ class CommitHookCommandTest extends TestCase
 
         $this->assertSame([
             'budLites' => '27',
-            'coronas' => '12'
+            'coronas' => '12',
         ], $formatted);
     }
 
     /**
      * @test
      */
-    public function it_formats_arguments_and_options()
+    public function it_formats_arguments_and_options(): void
     {
         $command = $this->bootstrapTestCommand();
 
@@ -76,14 +76,14 @@ class CommitHookCommandTest extends TestCase
         $this->assertSame([
             'budLites' => '27',
             'coronas' => '12',
-            '--beers' => '10'
+            '--beers' => '10',
         ], $formatted);
     }
 
     /**
      * @test
      */
-    public function it_proxies_commands()
+    public function it_proxies_commands(): void
     {
         $command = $this->bootstrapProxyTestCommand();
 
@@ -97,7 +97,7 @@ class CommitHookCommandTest extends TestCase
     /**
      * @test
      */
-    public function it_proxies_commands_and_takes_others()
+    public function it_proxies_commands_and_takes_others(): void
     {
         $command = $this->bootstrapProxyTestCommand();
 
@@ -109,10 +109,7 @@ class CommitHookCommandTest extends TestCase
         ], $formatted);
     }
 
-    /**
-     * @return TestCommand
-     */
-    protected function bootstrapTestCommand()
+    protected function bootstrapTestCommand(): TestCommand
     {
         $command = new TestCommand(new CommandOutputFormatter());
 
@@ -123,10 +120,7 @@ class CommitHookCommandTest extends TestCase
         return $command;
     }
 
-    /**
-     * @return ProxyTestCommand
-     */
-    protected function bootstrapProxyTestCommand()
+    protected function bootstrapProxyTestCommand(): ProxyTestCommand
     {
         $command = new ProxyTestCommand(new CommandOutputFormatter());
 
@@ -140,12 +134,12 @@ class CommitHookCommandTest extends TestCase
 
 class TestCommand extends CommitHookCommand
 {
+    /**
+     * @var string
+     */
     protected $signature = 'fake:command';
 
-    /**
-     * @return string
-     */
-    protected function getConfigKey()
+    protected function getConfigKey(): string
     {
         return 'N/A';
     }
@@ -153,12 +147,12 @@ class TestCommand extends CommitHookCommand
 
 class TestCommand2 extends CommitHookCommand
 {
+    /**
+     * @var string
+     */
     protected $signature = 'fake:command2 {budLites} {coronas?} {{--all}} {{--beers=10}}';
 
-    /**
-     * @return string
-     */
-    protected function getConfigKey()
+    protected function getConfigKey(): string
     {
         return 'N/A';
     }
@@ -166,12 +160,12 @@ class TestCommand2 extends CommitHookCommand
 
 class ProxyTestCommand extends CommitHookCommand
 {
+    /**
+     * @var string
+     */
     protected $signature = 'fake:proxy:command  {--proxiedArguments=} {--jawn?}';
 
-    /**
-     * @return string
-     */
-    protected function getConfigKey()
+    protected function getConfigKey(): string
     {
         return 'N/A';
     }

@@ -1,29 +1,29 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks\Commands\Sniff;
 
 use Feek\LaravelGitHooks\CommandOutputFormatter;
-use Feek\LaravelGitHooks\ProgramExecutor;
 use Feek\LaravelGitHooks\Commands\BaseCommand;
+use Feek\LaravelGitHooks\ProgramExecutor;
 use Symfony\Component\Console\Input\InputOption;
 
 abstract class SnifferCommand extends BaseCommand
 {
     /**
-     * @var ProgramExecutor
+     * @var \Feek\LaravelGitHooks\ProgramExecutor
      */
     protected $programExecutor;
 
     /**
-     * @var CommandOutputFormatter
+     * @var \Feek\LaravelGitHooks\CommandOutputFormatter
      */
     protected $commandOutputFormatter;
 
     /**
      * SnifferCommand constructor.
      *
-     * @param ProgramExecutor $programExecutor
-     * @param CommandOutputFormatter $commandOutputFormatter
+     * @param \Feek\LaravelGitHooks\ProgramExecutor $programExecutor
+     * @param \Feek\LaravelGitHooks\CommandOutputFormatter $commandOutputFormatter
      */
     public function __construct(ProgramExecutor $programExecutor, CommandOutputFormatter $commandOutputFormatter)
     {
@@ -32,25 +32,16 @@ abstract class SnifferCommand extends BaseCommand
         $this->commandOutputFormatter = $commandOutputFormatter;
     }
 
-    /**
-     * @return string
-     */
-    abstract protected function getCodeSnifferExecutable();
+    abstract protected function getCodeSnifferExecutable(): string;
 
-    /**
-     * @return string
-     */
-    abstract protected function getFileExtension();
+    abstract protected function getFileExtension(): string;
 
-    /**
-     * @return string
-     */
-    abstract protected function getFileLocation();
+    abstract protected function getFileLocation(): string;
 
     /**
      * @return array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return [
             ['diff', null, InputOption::VALUE_OPTIONAL, 'only pass the currently staged files'],
@@ -110,20 +101,20 @@ abstract class SnifferCommand extends BaseCommand
         return $statusCode;
     }
 
-    protected function getCommandName()
+    protected function getCommandName(): string
     {
         $commandName = explode(':', $this->signature)[1];
 
         return ucfirst(explode(' ', $commandName)[0]);
     }
 
-    protected function getBaseMessage()
+    protected function getBaseMessage(): string
     {
         $name = $this->getCommandName();
         return "Analyzing code with $name";
     }
 
-    protected function onCommandExec()
+    protected function onCommandExec(): void
     {
         // noop by default
     }

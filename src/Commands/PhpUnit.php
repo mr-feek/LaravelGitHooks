@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks\Commands;
 
@@ -22,19 +22,19 @@ class PhpUnit extends BaseCommand
     protected $description = 'Run your applications tests';
 
     /**
-     * @var CommandOutputFormatter
+     * @var \Feek\LaravelGitHooks\CommandOutputFormatter
      */
     protected $commandOutputFormatter;
 
     /**
-     * @var ProgramExecutor
+     * @var \Feek\LaravelGitHooks\ProgramExecutor
      */
     protected $programExecutor;
 
     /**
      * Create a new command instance.
      *
-     * @param CommandOutputFormatter $commandOutputFormatter
+     * @param \Feek\LaravelGitHooks\CommandOutputFormatter $commandOutputFormatter
      */
     public function __construct(ProgramExecutor $programExecutor, CommandOutputFormatter $commandOutputFormatter)
     {

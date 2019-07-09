@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\Tests\Unit;
 
@@ -10,7 +10,7 @@ class CommandOutputFormatterTest extends TestCase
     /**
      * @test
      */
-    public function it_formats_success_messages()
+    public function it_formats_success_messages(): void
     {
         $formatter = new CommandOutputFormatter();
         $this->assertSame('Suh Dude.......................................... [PASSED]', $formatter->success('Suh Dude'));
@@ -19,7 +19,7 @@ class CommandOutputFormatterTest extends TestCase
     /**
      * @test
      */
-    public function it_formats_error_messages()
+    public function it_formats_error_messages(): void
     {
         $formatter = new CommandOutputFormatter();
         $this->assertSame('Suh Dude.......................................... [ERROR]', $formatter->error('Suh Dude'));
@@ -28,7 +28,7 @@ class CommandOutputFormatterTest extends TestCase
     /**
      * @test
      */
-    public function it_formats_warning_messages()
+    public function it_formats_warning_messages(): void
     {
         $formatter = new CommandOutputFormatter();
         $this->assertSame('Suh Dude.......................................... [WARNING]', $formatter->warn('Suh Dude'));

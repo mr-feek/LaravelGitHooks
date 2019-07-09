@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ruleset name="My Standard">
+    <rule ref="vendor/poker-vault/phpcs-standard/phpcs.xml"/>
+
+    <!-- custom rules here -->
+</ruleset>

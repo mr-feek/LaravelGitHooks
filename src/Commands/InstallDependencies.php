@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks\Commands;
 
@@ -22,20 +22,20 @@ class InstallDependencies extends BaseCommand
     protected $description = 'Installs php and javascript dependencies, if available';
 
     /**
-     * @var Filesystem
+     * @var \Illuminate\Filesystem\Filesystem
      */
     protected $filesystem;
 
     /**
-     * @var ProgramExecutor
+     * @var \Feek\LaravelGitHooks\ProgramExecutor
      */
     protected $programExecutor;
 
     /**
      * InstallDependencies constructor.
      *
-     * @param Filesystem $filesystem
-     * @param ProgramExecutor $programExecutor
+     * @param \Illuminate\Filesystem\Filesystem $filesystem
+     * @param \Feek\LaravelGitHooks\ProgramExecutor $programExecutor
      */
     public function __construct(Filesystem $filesystem, ProgramExecutor $programExecutor)
     {
@@ -56,7 +56,7 @@ class InstallDependencies extends BaseCommand
         $this->npm();
     }
 
-    protected function composer()
+    protected function composer(): void
     {
         if (!$this->filesystem->exists(base_path('composer.json'))) {
             return;
@@ -76,7 +76,7 @@ class InstallDependencies extends BaseCommand
         $this->programExecutor->system($composer . ' install');
     }
 
-    protected function yarn()
+    protected function yarn(): void
     {
         if (!$this->filesystem->exists(base_path('yarn.lock'))) {
             return;
@@ -96,7 +96,7 @@ class InstallDependencies extends BaseCommand
         $this->programExecutor->system($yarn . ' install');
     }
 
-    protected function npm()
+    protected function npm(): void
     {
         if (!$this->filesystem->exists(base_path('package-lock.json'))) {
             return;

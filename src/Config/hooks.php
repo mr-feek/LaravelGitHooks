@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 return [
     /*
@@ -67,7 +67,7 @@ return [
     | push will fail. Add as many or few as you want.
     */
     'pre-push' => [
-        'hooks:phpunit'
+        'hooks:phpunit',
     ],
 
     /*
@@ -80,6 +80,6 @@ return [
     | the outcome of git checkout. Add as many or few as you want.
     */
     'post-checkout' => [
-        'hooks:install-deps'
+        'hooks:install-deps',
     ],
 ];

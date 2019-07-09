@@ -1,11 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks\Commands\Sniff;
-
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
-use PHPUnit\TextUI\TestRunner;
-use Symfony\Component\Console\Input\InputOption;
 
 class ESLint extends SnifferCommand
 {
@@ -23,26 +18,17 @@ class ESLint extends SnifferCommand
      */
     protected $description = 'Runs ESLint';
 
-    /**
-     * @return string
-     */
-    protected function getCodeSnifferExecutable()
+    protected function getCodeSnifferExecutable(): string
     {
-        return  base_path('/node_modules/.bin/eslint');
+        return base_path('/node_modules/.bin/eslint');
     }
 
-    /**
-     * @return string
-     */
-    protected function getFileExtension()
+    protected function getFileExtension(): string
     {
         return 'js';
     }
 
-    /**
-     * @return string
-     */
-    protected function getFileLocation()
+    protected function getFileLocation(): string
     {
         return resource_path('assets/js');
     }

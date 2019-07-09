@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks\Commands\CommitHooks;
 
@@ -18,10 +18,7 @@ class PostCheckout extends CommitHookCommand
      */
     protected $description = 'Invoked within git post-checkout hook';
 
-    /**
-     * @return string
-     */
-    protected function getConfigKey()
+    protected function getConfigKey(): string
     {
         return 'hooks.post-checkout';
     }

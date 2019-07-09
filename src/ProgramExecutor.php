@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks;
 
@@ -9,12 +9,15 @@ namespace Feek\LaravelGitHooks;
  */
 class ProgramExecutor
 {
-    public function exec($command = '', &$output = [], &$returnVal = 0)
+    public function exec(string $command = '', array &$output = [], int &$returnVal = 0): string
     {
         return exec($command, $output, $returnVal);
     }
 
-    public function system($command = '', &$returnVal = 0)
+    /**
+     * @return bool|string
+     */
+    public function system(string $command = '', int &$returnVal = 0)
     {
         return system($command, $returnVal);
     }

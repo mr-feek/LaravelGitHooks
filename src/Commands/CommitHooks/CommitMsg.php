@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks\Commands\CommitHooks;
 
@@ -18,10 +18,7 @@ class CommitMsg extends CommitHookCommand
      */
     protected $description = 'Invoked within git commit-msg hook';
 
-    /**
-     * @return string
-     */
-    protected function getConfigKey()
+    protected function getConfigKey(): string
     {
         return 'hooks.commit-msg';
     }

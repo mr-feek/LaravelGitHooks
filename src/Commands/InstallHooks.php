@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks\Commands;
 
@@ -25,20 +25,20 @@ class InstallHooks extends BaseCommand
     protected $description = 'Installs all laravel-git-hooks to the local .git hooks folder';
 
     /**
-     * @var Finder
+     * @var \Symfony\Component\Finder\Finder
      */
     private $finder;
 
     /**
-     * @var Filesystem
+     * @var \Illuminate\Filesystem\Filesystem
      */
     private $filesystem;
 
     /**
      * InstallHooks constructor.
      *
-     * @param Finder $finder
-     * @param Filesystem $filesystem
+     * @param \Symfony\Component\Finder\Finder $finder
+     * @param \Illuminate\Filesystem\Filesystem $filesystem
      */
     public function __construct(Finder $finder, Filesystem $filesystem)
     {
@@ -58,20 +58,20 @@ class InstallHooks extends BaseCommand
             return 0;
         }
 
-        $srcPath = __DIR__.'/../Hooks/';
-        $destPath = base_path().'/.git/hooks/';
+        $srcPath = __DIR__ . '/../Hooks/';
+        $destPath = base_path() . '/.git/hooks/';
 
         $this->finder->files()->in($srcPath)->name('*.sh');
 
         foreach ($this->finder as $file) {
             $source = $file->getRealPath();
-            $destination = $destPath.$file->getRelativePath().$file->getBasename('.sh');
+            $destination = $destPath . $file->getRelativePath() . $file->getBasename('.sh');
 
-            $sourceContent = PHP_EOL.$this->delimiterStart().PHP_EOL.$file->getContents().PHP_EOL.$this->delimiterEnd().PHP_EOL;
+            $sourceContent = PHP_EOL . $this->delimiterStart() . PHP_EOL . $file->getContents() . PHP_EOL . $this->delimiterEnd() . PHP_EOL;
             $destinationContent = $this->filesystem->exists($destination) ? $this->filesystem->get($destination) : '';
 
             if (str_contains($destinationContent, $this->delimiterStart())) {
-                $search = '/'.$this->delimiterStart().'[\s\S]+?'.$this->delimiterEnd().'/m';
+                $search = '/' . $this->delimiterStart() . '[\s\S]+?' . $this->delimiterEnd() . '/m';
                 $destinationContent = preg_replace($search, $sourceContent, $destinationContent);
             } else {
                 $destinationContent .= $sourceContent;
@@ -82,7 +82,7 @@ class InstallHooks extends BaseCommand
 
             $from = str_replace(base_path(), '', realpath($source));
             $to = str_replace(base_path(), '', realpath($destination));
-            $this->line('<info>Copied File</info> <comment>['.$from.']</comment> <info>To</info> <comment>['.$to.']</comment>');
+            $this->line('<info>Copied File</info> <comment>[' . $from . ']</comment> <info>To</info> <comment>[' . $to . ']</comment>');
         }
 
         return 0;

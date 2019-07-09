@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks\Commands\CommitHooks;
 
@@ -18,18 +18,12 @@ class PrepareCommitMsg extends CommitHookCommand
      */
     protected $description = 'Invoked within git prepare-commit-msg hook';
 
-    /**
-     * @return string
-     */
-    protected function getConfigKey()
+    protected function getConfigKey(): string
     {
         return 'hooks.prepare-commit-msg';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function buildArgumentArrayFromArgumentString($commandName, $arguments = '')
+    public function buildArgumentArrayFromArgumentString(string $commandName, string $arguments = ''): array
     {
         // the explicit arguments passed to be passed to the underlying command to be invoked
         $arguments = parent::buildArgumentArrayFromArgumentString($commandName, $arguments);

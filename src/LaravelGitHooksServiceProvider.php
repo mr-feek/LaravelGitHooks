@@ -1,14 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks;
 
 use Feek\LaravelGitHooks\Commands\CommitHooks\CommitMsg;
+use Feek\LaravelGitHooks\Commands\CommitHooks\PostCheckout;
+use Feek\LaravelGitHooks\Commands\CommitHooks\PreCommit;
+use Feek\LaravelGitHooks\Commands\CommitHooks\PrepareCommitMsg;
+use Feek\LaravelGitHooks\Commands\CommitHooks\PrePush;
 use Feek\LaravelGitHooks\Commands\InstallDependencies;
 use Feek\LaravelGitHooks\Commands\InstallHooks;
-use Feek\LaravelGitHooks\Commands\CommitHooks\PreCommit;
-use Feek\LaravelGitHooks\Commands\CommitHooks\PrePush;
-use Feek\LaravelGitHooks\Commands\CommitHooks\PrepareCommitMsg;
-use Feek\LaravelGitHooks\Commands\CommitHooks\PostCheckout;
 use Feek\LaravelGitHooks\Commands\PhpUnit;
 use Feek\LaravelGitHooks\Commands\SemanticCommitMessages;
 use Feek\LaravelGitHooks\Commands\Sniff\ESLint;
@@ -25,7 +25,7 @@ class LaravelGitHooksServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -49,11 +49,11 @@ class LaravelGitHooksServiceProvider extends ServiceProvider
             ]);
 
             $this->publishes([
-                __DIR__.'/Config/hooks.php' => config_path('hooks.php'),
+                __DIR__ . '/Config/hooks.php' => config_path('hooks.php'),
             ]);
 
             $this->mergeConfigFrom(
-                __DIR__.'/Config/hooks.php',
+                __DIR__ . '/Config/hooks.php',
                 'hooks'
             );
         }
@@ -64,7 +64,7 @@ class LaravelGitHooksServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }

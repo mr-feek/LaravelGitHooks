@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Feek\LaravelGitHooks\Commands\Sniff;
 
@@ -18,7 +18,7 @@ class Phpcbf extends PHPCodeSnifferCommand
      */
     protected $description = 'Run phpcbf on the given files';
 
-    public function getCodeSnifferExecutable()
+    public function getCodeSnifferExecutable(): string
     {
         return base_path() . '/vendor/bin/phpcbf';
     }
