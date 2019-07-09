@@ -113,6 +113,7 @@ class CommitHookCommandTest extends TestCase
     {
         $command = new TestCommand(new CommandOutputFormatter());
 
+        /** @var \Mockery\MockInterface|Application $appMock */
         $appMock = Mockery::mock(Application::class)->makePartial();
         $appMock->shouldReceive('find')->with('fake:command2')->andReturn(new TestCommand2(new CommandOutputFormatter()));
 
@@ -124,6 +125,7 @@ class CommitHookCommandTest extends TestCase
     {
         $command = new ProxyTestCommand(new CommandOutputFormatter());
 
+        /** @var \Mockery\MockInterface|Application $appMock */
         $appMock = Mockery::mock(Application::class)->makePartial();
         $appMock->shouldReceive('find')->with('fake:proxy:command')->andReturn(new ProxyTestCommand(new CommandOutputFormatter()));
 
