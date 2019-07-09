@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Feek\LaravelGitHooks\Unit;
+namespace Feek\LaravelGitHooks\Tests\Unit;
 
 use Feek\LaravelGitHooks\LaravelGitHooksServiceProvider;
 use Feek\LaravelGitHooks\Traits\GitHookDelimiter;

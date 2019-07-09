@@ -23,10 +23,7 @@ class CommitMsg extends CommitHookCommand
         return 'hooks.commit-msg';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function buildArgumentArrayFromArgumentString($commandName, $arguments = '')
+    public function buildArgumentArrayFromArgumentString(string $commandName, string $arguments = ''): array
     {
         // the explicit arguments passed to be passed to the underlying command to be invoked
         $arguments = parent::buildArgumentArrayFromArgumentString($commandName, $arguments);

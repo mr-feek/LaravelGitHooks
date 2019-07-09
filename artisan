@@ -63,7 +63,7 @@ app()->instance('config', $config = new Repository([
         'hooks:semantic-commits'
     ],
     'hooks.pre-commit' => [
-        'hooks:phpcs --diff --proxiedArguments="-p -n --standard=PSR2"
+        'hooks:phpcs --diff --proxiedArguments="-p -n -s"
     '],
     'hooks.pre-push' => [
         'hooks:phpunit'

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Feek\Tests\Unit;
+namespace Feek\LaravelGitHooks\Tests\Unit;
 
 use Feek\LaravelGitHooks\CommandOutputFormatter;
 use Feek\LaravelGitHooks\Commands\CommitHooks\CommitHookCommand;
@@ -31,7 +31,7 @@ class CommitHookCommandTest extends TestCase
         $formatted = $command->buildArgumentArrayFromArgumentString('fake:command2', '--drinkAll');
 
         $this->assertSame([
-            '--drinkAll' => true,,
+            '--drinkAll' => true,
         ], $formatted);
     }
 
@@ -45,7 +45,7 @@ class CommitHookCommandTest extends TestCase
         $formatted = $command->buildArgumentArrayFromArgumentString('fake:command2', '27');
 
         $this->assertSame([
-            'budLites' => '27',,
+            'budLites' => '27',
         ], $formatted);
     }
 

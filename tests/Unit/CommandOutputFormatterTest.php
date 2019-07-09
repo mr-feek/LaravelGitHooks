@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Feek\Tests\Unit;
+namespace Feek\LaravelGitHooks\Tests\Unit;
 
 use Feek\LaravelGitHooks\CommandOutputFormatter;
 use Orchestra\Testbench\TestCase;
