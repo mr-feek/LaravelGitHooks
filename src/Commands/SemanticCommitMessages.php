@@ -46,10 +46,10 @@ class SemanticCommitMessages extends BaseCommand
         $this->info($this->outputFormatter->info('Checking semantics of commit message'));
 
         $commitMessageFile = $this->argument('file');
-        $contents = $this->filesystem->get($commitMessageFile);
+        $contents = strtolower($this->filesystem->get($commitMessageFile));
 
         // allow default merge commits
-        if (Str::startsWith($contents, 'Merge')) {
+        if (Str::startsWith($contents, 'merge')) {
             return 0;
         }
 
