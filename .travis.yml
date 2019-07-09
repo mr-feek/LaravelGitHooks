@@ -3,7 +3,7 @@ php:
   - 7.3
 
 before_script:
-  - composer self-update
+  - phpenv config-rm xdebug.ini
   - composer install --no-interaction
 
 script:
