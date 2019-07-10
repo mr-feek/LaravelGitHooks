@@ -2,6 +2,9 @@
 
 namespace Feek\LaravelGitHooks;
 
+/**
+ * @internal
+ */
 class CommandOutputFormatter
 {
     public function success(string $message): string

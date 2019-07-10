@@ -8,6 +8,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ### Added
 - `commit-msg` hook
 - Semantic commit messaging hook. [Inspiration](https://seesparkbox.com/foundry/semantic_commit_messages)
+- The ability to execute any bash script as a git hook, not just artisan commands
 
 ### Deprecated
 - Nothing
@@ -26,7 +27,9 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Nothing
 
 ### BREAKING CHANGES
-- this package now requires ^php7.3
+- **this package now requires ^php7.3**
+- **all pre-configured commands in your configuration file need to be prefaced with `php artisan` because you
+  can now execute any bash script in your git hooks, not just artisan commands.**
 
 ## [v0.5.1]
 

@@ -13,7 +13,7 @@ class SemanticCommitMessages extends BaseCommand
     /**
      * @inheritdoc
      */
-    protected $signature = 'hooks:semantic-commits {file}';
+    protected $signature = 'hooks:semantic-commits {file} {messageSource?} {sha?}';
 
     /**
      * @inheritdoc

@@ -12,7 +12,7 @@
 [![License](https://poser.pugx.org/mr-feek/laravel-git-hooks/license)](https://packagist.org/packages/mr-feek/laravel-git-hooks)
 [![Build Status](https://travis-ci.org/mr-feek/LaravelGitHooks.svg?branch=master)](https://travis-ci.org/mr-feek/LaravelGitHooks)
 
-This package provides a way to add custom git hooks to your laravel project. Easily configure any artisan command to be fired throughout the git-hook process. Want to ensure that all tests pass before a bad commit is pushed? Now's your chance!
+This package provides a way to add custom git hooks to your laravel project. Easily configure any command to be fired throughout the git-hook process. Want to ensure that all tests pass before a bad commit is pushed? Now's your chance!
  
 Currently, the following git hooks are supported:
 - pre-commit
@@ -47,17 +47,17 @@ return [
         //
     ],
     'pre-commit' => [
-        'hooks:phpcs --diff --proxiedArguments="-p -n --standard=PSR2"',
-        'hooks:eslint --diff --proxiedArguments="--fix --quiet"',
+        'php artisan hooks:phpcs --diff --proxiedArguments="-p -n --standard=PSR2"',
+        'php artisan hooks:eslint --diff --proxiedArguments="--fix --quiet"',
     ],
     'pre-push' => [
-        'hooks:phpunit'
+        'php artisan hooks:phpunit'
     ],
     'post-checkout' => [
-        'hooks:install-deps'
+        'php artisan hooks:install-deps'
     ],
     'prepare-commit-msg' => [
-        'hooks:semantic-commits',
+        'php artisan hooks:semantic-commits',
     ],
 ];
 ```
