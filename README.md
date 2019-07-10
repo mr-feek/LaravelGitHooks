@@ -51,7 +51,7 @@ return [
         'php artisan hooks:eslint --diff --proxiedArguments="--fix --quiet"',
     ],
     'pre-push' => [
-        'php artisan hooks:phpunit'
+        './vendor/bin/phpunit'
     ],
     'post-checkout' => [
         'php artisan hooks:install-deps'
@@ -64,7 +64,6 @@ return [
 
 ## Commands
 This package ships with several handy artisan commands which work nicely as git hooks. The following commands come included:
-- phpunit
 - phpcs
 - phpcbf
 - phpstan 
