@@ -43,8 +43,6 @@ class SemanticCommitMessages extends BaseCommand
      */
     public function handle()
     {
-        $this->info($this->outputFormatter->info('Checking semantics of commit message'));
-
         $commitMessageFile = $this->argument('file');
         $contents = strtolower($this->filesystem->get($commitMessageFile));
 
