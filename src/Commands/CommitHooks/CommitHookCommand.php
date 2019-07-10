@@ -53,7 +53,7 @@ abstract class CommitHookCommand extends BaseCommand
 
             $command .= ' ' . (string) $this->createInputFromArguments($arguments);
 
-            $this->comment($this->commandOutputFormatter->info('invoking: ' . $command));
+            $this->info($this->commandOutputFormatter->info('invoking: ' . $command));
             $this->programExecutor->system($command, $statusCode);
 
             if ($statusCode !== 0) {
