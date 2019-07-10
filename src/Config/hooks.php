@@ -51,7 +51,8 @@ return [
     | while preparing the commit msg. If any of these commands fail, then
     | the commit will be aborted. The commit message file location will
     | automatically be passed as the first argument to all commands
-    | listed here.
+    | listed here. Additionally, the two optional arguments will be
+    | passed as arguments if they are included.
     */
     'prepare-commit-msg' => [
         //
@@ -64,7 +65,9 @@ return [
     |
     | Here is where you should list each command that you want run
     | prior to a git push. If any of these commands fail, then the
-    | push will fail. Add as many or few as you want.
+    | push will fail. Add as many or few as you want. The commit
+    | hook arguments will automatically be proxied to these commands
+    | if they are provided.
     */
     'pre-push' => [
         'php artisan hooks:phpunit',
@@ -77,7 +80,9 @@ return [
     |
     | Here is where you should list each command that you want run
     | after git checkout (also invoked on git clone). This hook cannot affect
-    | the outcome of git checkout. Add as many or few as you want.
+    | the outcome of git checkout. Add as many or few as you want. The commit
+    | hook arguments will automatically be proxied to these commands
+    | if they are provided.
     */
     'post-checkout' => [
         'php artisan hooks:install-deps',
