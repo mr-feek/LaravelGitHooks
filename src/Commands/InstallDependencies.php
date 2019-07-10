@@ -69,10 +69,6 @@ class InstallDependencies extends BaseCommand
             return;
         }
 
-        if (!$this->confirm('Should we install the composer dependencies?')) {
-            return;
-        }
-
         $this->programExecutor->system($composer . ' install');
     }
 
@@ -86,10 +82,6 @@ class InstallDependencies extends BaseCommand
 
         if (! $yarn) {
             $this->warn('yarn not found');
-            return;
-        }
-
-        if (!$this->confirm('Should we install the yarn dependencies?')) {
             return;
         }
       
@@ -106,10 +98,6 @@ class InstallDependencies extends BaseCommand
 
         if (! $npm) {
             $this->warn('npm not found');
-            return;
-        }
-
-        if (!$this->confirm('Should we install the npm dependencies?')) {
             return;
         }
       

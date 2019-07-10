@@ -31,6 +31,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - **this package now requires ^php7.3**
 - **all pre-configured commands in your configuration file need to be prefaced with `php artisan` because you
   can now execute any bash script in your git hooks, not just artisan commands.**
+- **Install Dependencies hook no longer asks for confirmation**
 
 ## [v0.5.1]
 
