@@ -70,7 +70,7 @@ return [
     | if they are provided.
     */
     'pre-push' => [
-        'php artisan hooks:phpunit',
+        './vendor/bin/phpunit',
     ],
 
     /*

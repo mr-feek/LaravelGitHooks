@@ -21,7 +21,8 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Removed
 - `weebly/phpstan-laravel` hard requirement.
-- support for php 5.6
+- support for php versions lower than 7.3
+- phpunit command, this is no longer necessary as a proxy
 
 ### Security
 - Nothing
